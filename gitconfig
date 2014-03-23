@@ -15,3 +15,4 @@ sl = stash list
 sa = stash apply
 ss = stash save
 unstage = reset HEAD --
+last = log -1 HEAD
