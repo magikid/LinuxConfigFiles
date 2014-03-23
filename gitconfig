@@ -1,0 +1,17 @@
+[user]
+        name = Chris Jones
+        email = chris@christophrjones.us
+
+[alias]
+la = "!git config -l | grep alias | cut -c 7-"
+st = status -s
+cl = clone
+ci = commit
+co = checkout
+br = branch 
+r = reset
+r1 = reset HEAD^
+sl = stash list
+sa = stash apply
+ss = stash save
+unstage = reset HEAD --
