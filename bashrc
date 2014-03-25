@@ -107,3 +107,7 @@ if [ -f /etc/bash_completion ] && ! shopt -oq posix; then
 fi
 
 rvmsudo_secure_path=1
+
+for file in /etc/bash_completion.d/* ; do
+  source "$file"
+done
