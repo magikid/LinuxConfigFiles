@@ -125,6 +125,3 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 . ~/.bash_prompt
 
-for file in /etc/bash_completion.d/* ; do
-  source "$file"
-done
