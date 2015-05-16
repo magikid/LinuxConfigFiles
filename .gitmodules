@@ -1,0 +1,9 @@
+[submodule "vim/bundle/vim/bundle"]
+	path = vim/bundle/vim/bundle
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim/bundle/nerdtree"]
+	path = vim/bundle/nerdtree
+	url = git@github.com:scrooloose/nerdtree.git
+[submodule "vim/bundle/tabular"]
+	path = vim/bundle/tabular
+	url = git@github.com:godlygeek/tabular.git
