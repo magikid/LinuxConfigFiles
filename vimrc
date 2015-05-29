@@ -1,53 +1,74 @@
-set backspace=2   " Backspace deletes like most programs in insert mode
-set nobackup
-set nowritebackup
-set noswapfile    " http://robots.thoughtbot.com/post/18739402579/global-gitignore#comment-458413287
-set history=50
-set ruler         " show the cursor position all the time
-set incsearch
-set laststatus=2
-set number
-
-" Switch syntax highlighting on, when the terminal has colors
-" Also switch on highlighting the last used search pattern.
-if (&t_Co > 2 || has("gui_running")) && !exists("syntax_on")
-  syntax on
+set nocompatible
+ 
+if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
+  set fileencodings=ucs-bom,utf-8,latin1
 endif
-
-inoremap jj <Esc>
-
-execute pathogen#infect()
-syntax on
-filetype plugin indent on
-
-" Softtabs, 2 spaces
+ 
+runtime bundle/vim/patogen-autoload/pathogen.vim
+execute patogen#infect()
+ 
+set bs=indent,eol,start
+set viminfo='20,\"500
+ 
+15:set hlsearch
+ 
+if &term=="xterm"
+  set t_Co=8
+  set t_Sb=[4%dm
+  set t_Sf=[3%dm
+endif
+ 
+let &guicursor = &guicursor . ",a:blinkon0"
+ 
+set showmatch
+set matchtime=2
+set matchpairs+=<:>
+set scrolloff=2
+set showmode
+set title
+set laststatus=2
+set hidden
+ 
+set directory=~/.vim/swap//
+set backupdir=~/.vim/backups//
+ 
 set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
-
-
-augroup vimrcEx
-  autocmd!
-  
-  autocmd BufRead,BufNewFile *.md set filetype=markdown
-
-  " Enable spell checking
-  autocmd FileType markdown setlocal spell
-  autocmd FileType gitcommit setlocal spell
-
-augroup END
-
-set textwidth=80
-set colorcolumn=+1
-
+ 
 set splitbelow
-set splitright
-
-" Quicker window movement
+set split right
+ 
+set nowrap
+set sidescroll=1
+set listchars=extends:>,precedes:<
+set sidescrolloff=20
+ 
+set hlsearch
+set incsearch
+ 
+nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
-nnoremap <C-h> <C-w>h
 nnoremap <C-l> <C-w>l
+ 
+imap jj <Esc>
+ 
+set autoread
+set number
+set virtualedit=block
+ 
+syntax enable
+filetype plugin indent on
+ 
+augroup vimrcEx
+  autocmd!
+  autocmd FileType markdown setlocal spell
+  autocmd FileType md setlocal spell
+  autocmd FileType gitcommit setlocal spell
+augroup end
+ 
+set background=dark
+colorscheme solarized
 
-set nowrap
