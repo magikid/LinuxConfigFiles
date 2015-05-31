@@ -1,16 +1,15 @@
+execute pathogen#infect()
 set nocompatible
  
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
   set fileencodings=ucs-bom,utf-8,latin1
 endif
- 
-runtime bundle/vim/patogen-autoload/pathogen.vim
-execute patogen#infect()
+
  
 set bs=indent,eol,start
 set viminfo='20,\"500
  
-15:set hlsearch
+set hlsearch
  
 if &term=="xterm"
   set t_Co=8
@@ -38,7 +37,7 @@ set shiftround
 set expandtab
  
 set splitbelow
-set split right
+set splitright
  
 set nowrap
 set sidescroll=1
