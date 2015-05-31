@@ -1,4 +1,4 @@
-# To setup awesome git PS1:
+# To setup awesome git PS1
 # (cd /tmp && git clone --depth 1 https://github.com/twolfson/sexy-bash-prompt && cd sexy-bash-prompt && make install) && source ~/.bashrc
 
 # ~/.bashrc: executed by bash(1) for non-login shells.
@@ -117,7 +117,7 @@ PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 . ~/.bash_prompt
 
 export EDITOR='vim'
-ssh-agent
+eval $(ssh-agent)
 
 fixssh() {
   for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
@@ -127,3 +127,6 @@ fixssh() {
     fi
   done
 }
+
+export PATH="$PATH:$HOME/.npm/bin"
+alias vi='vim'
