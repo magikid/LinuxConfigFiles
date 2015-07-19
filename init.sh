@@ -10,3 +10,5 @@ ln -s .dotfiles/gitconfig .gitconfig
 ln -s .dotfiles/bashrc .bashrc
 ln -s .dotfiles/bash_alias .bash_alias
 ln -s .dotfiles/tmux.conf .tmux.conf
+ln -s .dotfiles/git-prompt.sh .git-prompt.sh
+ln -s .dotfiles/gitmessage .gitmessage
