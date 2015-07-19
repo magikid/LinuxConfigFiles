@@ -1,16 +1,23 @@
-execute pathogen#infect()
 set nocompatible
  
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
+runtime bundle/vim-pathogen/autoload/pathogen.vim
+execute pathogen#infect()
  
 set bs=indent,eol,start
 set viminfo='20,\"500
- 
-set hlsearch
- 
+set history=50
+set ruler
+if &t_Co > 2 || has("gui_runnint")
+  syntax on
+  set hlsearch
+endif
+
+filetype plugin on
+
 if &term=="xterm"
   set t_Co=8
   set t_Sb=[4%dm
@@ -70,4 +77,4 @@ augroup end
  
 set background=dark
 colorscheme solarized
-
+command R !rspec %
