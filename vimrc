@@ -78,3 +78,5 @@ augroup end
 set background=dark
 colorscheme solarized
 command R !rspec %
+
+let g:NERDTreeDirArrows=0
