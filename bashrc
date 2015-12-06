@@ -62,7 +62,6 @@ rvmsudo_secure_path=1
 ### Added by the Heroku Toolbelt
 export PATH="/usr/local/heroku/bin:$PATH"
 
-PATH=$PATH:$HOME/.rvm/bin # Add RVM to PATH for scripting
 
 export EDITOR='vim'
 eval $(ssh-agent)
@@ -79,5 +78,6 @@ dirsize(){
   sudo du -cxh --max-depth 1 . | sort -h;
 }
 
-export PATH="$PATH:$HOME/.npm/bin"
+export PATH="$PATH:$HOME/.npm/bin:$HOME/bin"
+export PATH=$HOME/.rvm/bin:$PATH # Add RVM to PATH for scripting
 alias vi='vim'
