@@ -80,3 +80,5 @@ colorscheme solarized
 command R !rspec %
 
 let g:NERDTreeDirArrows=0
+let g:ctrlp_map = '<c-p>'
+let g:ctrlp_cmd = 'CtrlP'
