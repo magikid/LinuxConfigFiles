@@ -53,7 +53,6 @@ plugins=(git vim venv)
 
 # User configuration
 
-  export PATH=$PATH:/home/chrisj/.rvm/bin:/usr/local/heroku/bin:/home/chrisj/.rvm/gems/ruby-2.2.1/bin:/home/chrisj/.rvm/gems/ruby-2.2.1@global/bin:/home/chrisj/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:/home/chrisj/.rvm/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:/home/chrisj/.npm/bin:/home/chrisj/bin:/home/chrisj/.local/bin:/home/chrisj/bin:/home/chrisj/.rvm/bin:/home/chrisj/.npm/bin:/home/chrisj/bin
 # export MANPATH="/usr/local/man:$MANPATH"
 
 source $ZSH/oh-my-zsh.sh
@@ -96,5 +95,6 @@ source ~/.venvburrito/startup.sh
 export EDITOR="vim"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 
-### Added by the Heroku Toolbelt
-export PATH="/usr/local/heroku/bin:$PATH"
+export PATH=$PATH:$HOME/.rvm/bin:/usr/local/heroku/bin:$HOME/.rvm/gems/ruby-2.2.1/bin:$HOME/.rvm/gems/ruby-2.2.1@global/bin:$HOME/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.npm/bin:$HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.npm/bin:$HOME/bin
+
+export QT_SELECT=5
