@@ -22,3 +22,6 @@
 [submodule "vim/bundle/vim-endwise"]
 	path = vim/bundle/vim-endwise
 	url = git@github.com:tpope/vim-endwise.git
+[submodule "vim/bundle/tslime.vim"]
+	path = vim/bundle/tslime.vim
+	url = git@github.com:jgdavey/tslime.vim.git

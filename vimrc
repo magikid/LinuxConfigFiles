@@ -91,3 +91,6 @@ map <Leader>a :call RunAllSpecs()<CR>
 " Make lines longer than 80 chars red
 highlight OverLength ctermbg=red ctermfg=white guibg=#592929
 match OverLength /\%81v.\+/
+
+" Sends rspec to its own tmux pane
+let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
