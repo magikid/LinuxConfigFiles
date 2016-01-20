@@ -13,3 +13,6 @@
 [submodule "vim/bundle/ctrlp.vim"]
 	path = vim/bundle/ctrlp.vim
 	url = git@github.com:ctrlpvim/ctrlp.vim.git
+[submodule "vim/bundle/vim-rspec"]
+	path = vim/bundle/vim-rspec
+	url = git@github.com:thoughtbot/vim-rspec.git
