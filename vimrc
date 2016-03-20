@@ -48,7 +48,7 @@ set splitright
  
 set nowrap
 set sidescroll=1
-set listchars=extends:>,precedes:<
+set list listchars=tab:»·,trail:·,nbsp:·,extends:>,precedes:<
 set sidescrolloff=20
  
 set hlsearch
@@ -77,7 +77,6 @@ augroup end
  
 set background=dark
 colorscheme solarized
-command R !rspec %
 
 let g:NERDTreeDirArrows=0
 let g:ctrlp_map = '<c-p>'
