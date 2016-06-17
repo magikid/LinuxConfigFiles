@@ -81,7 +81,7 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-
+alias y=yaourt
 
 fixssh() {
   for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
@@ -102,7 +102,8 @@ export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/us
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-export PATH=$PATH:$HOME/.rvm/bin:/usr/local/heroku/bin:$HOME/.rvm/gems/ruby-2.2.1/bin:$HOME/.rvm/gems/ruby-2.2.1@global/bin:$HOME/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.npm/bin:$HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.npm/bin:$HOME/bin
+export PATH=$PATH:$HOME/.rvm/bin:/usr/local/heroku/bin:$HOME/.rvm/gems/ruby-2.2.1/bin:$HOME/.rvm/gems/ruby-2.2.1@global/bin:$HOME/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.npm/bin:$HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.npm/bin:$HOME/bin:$HOME/projects/go/bin
+export GOPATH=$HOME/projects/go
 
 export QT_SELECT=5
 
