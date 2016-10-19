@@ -91,10 +91,28 @@ fixssh() {
     fi
   done
 }
+
+dirsize(){
+  du -cxh -d 1 | sort -h
+}
+
 source ~/.venvburrito/startup.sh
 export EDITOR="vim"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
-
+export PATH="$HOME/.linuxbrew/bin:$PATH"
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export PATH=$PATH:$HOME/.rvm/bin:/usr/local/heroku/bin:$HOME/.rvm/gems/ruby-2.2.1/bin:$HOME/.rvm/gems/ruby-2.2.1@global/bin:$HOME/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.npm/bin:$HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.npm/bin:$HOME/bin
 
 export QT_SELECT=5
+
+# Add this to your zshrc or bzshrc file
+_not_inside_tmux() { [[ -z "$TMUX" ]] }
+
+ensure_tmux_is_running() {
+  if _not_inside_tmux; then
+    tat
+  fi
+}
+
+ensure_tmux_is_running
