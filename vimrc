@@ -48,7 +48,7 @@ set splitright
  
 set nowrap
 set sidescroll=1
-set listchars=extends:>,precedes:<
+set list listchars=tab:»·,trail:·,nbsp:·,extends:>,precedes:<
 set sidescrolloff=20
  
 set hlsearch
@@ -58,7 +58,12 @@ nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
- 
+
+noremap <Up> <nop>
+noremap <Left> <nop>
+noremap <Right> <nop>
+noremap <Down> <nop>
+
 imap jj <Esc>
  
 set autoread
@@ -77,7 +82,6 @@ augroup end
  
 set background=dark
 colorscheme solarized
-command R !rspec %
 
 let g:NERDTreeDirArrows=0
 let g:ctrlp_map = '<c-p>'
@@ -94,3 +98,6 @@ match OverLength /\%81v.\+/
 
 " Sends rspec to its own tmux pane
 let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
+
+set exrc
+set secure
