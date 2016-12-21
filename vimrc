@@ -1,12 +1,12 @@
 set nocompatible
- 
+
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
   set fileencodings=ucs-bom,utf-8,latin1
 endif
 
 runtime bundle/vim-pathogen/autoload/pathogen.vim
 execute pathogen#infect()
- 
+
 set bs=indent,eol,start
 set viminfo='20,\"500
 set history=50
@@ -23,9 +23,9 @@ if &term=="xterm"
   set t_Sb=[4%dm
   set t_Sf=[3%dm
 endif
- 
+
 let &guicursor = &guicursor . ",a:blinkon0"
- 
+
 set showmatch
 set matchtime=2
 set matchpairs+=<:>
@@ -34,58 +34,64 @@ set showmode
 set title
 set laststatus=2
 set hidden
- 
+
 set directory=~/.vim/swap//
 set backupdir=~/.vim/backups//
- 
+
 set tabstop=2
 set shiftwidth=2
 set shiftround
 set expandtab
- 
+
 set splitbelow
 set splitright
- 
+
 set nowrap
 set sidescroll=1
 set list listchars=tab:»·,trail:·,nbsp:·,extends:>,precedes:<
 set sidescrolloff=20
- 
+
 set hlsearch
 set incsearch
- 
+
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-noremap <Up> <nop>
+noremap <Up> :lprev<CR>
 noremap <Left> <nop>
 noremap <Right> <nop>
-noremap <Down> <nop>
+noremap <Down> :lnext<CR>
 
 imap jj <Esc>
- 
+
 set autoread
 set number
+set relativenumber
 set virtualedit=block
- 
+
 syntax enable
 filetype plugin indent on
- 
+
 augroup vimrcEx
   autocmd!
   autocmd FileType markdown setlocal spell
   autocmd FileType md setlocal spell
   autocmd FileType gitcommit setlocal spell
+  autocmd BufNewFile,BufRead hg-editor-*.txt setlocal spell textwidth=80
 augroup end
- 
+
 set background=dark
 colorscheme solarized
 
 let g:NERDTreeDirArrows=0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
+let g:ctrlp_custom_ignore = {
+    \ 'dir': '\v[\/]\.(git|hg|svn)$',
+    \ 'file': '\v\.(out)$',
+    \ }
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
@@ -101,3 +107,17 @@ let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 set exrc
 set secure
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+let g:syntastic_cpp_checkers = ["cpplint", "gcc"]
+
+let g:syntastic_cpp_cpplint_exec = 'cpplint'
+let g:syntastic_cpp_compiler = 'g++'
+let g:syntastic_cpp_compiler_options = ' -std=c++14'
