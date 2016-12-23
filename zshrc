@@ -5,7 +5,8 @@
 # Look in ~/.oh-my-zsh/themes/
 # Optionally, if you set this to "random", it'll load a random theme each
 # time that oh-my-zsh is loaded.
-ZSH_THEME="gentoo"
+ZSH_THEME="amuse"
+
 
 # Uncomment the following line to use case-sensitive completion.
 # CASE_SENSITIVE="true"
@@ -49,7 +50,7 @@ ZSH_THEME="gentoo"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git vim venv)
+plugins=(git vim venv hg mercurial)
 
 # User configuration
 
@@ -82,7 +83,6 @@ export LANG=en_US.UTF-8
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-
 fixssh() {
   for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
     if (tmux show-environment | grep "^${key}" > /dev/null); then
@@ -97,12 +97,14 @@ dirsize(){
 }
 
 source ~/.venvburrito/startup.sh
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 export EDITOR="vim"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
-export PATH=$PATH:$HOME/.rvm/bin:/usr/local/heroku/bin:$HOME/.rvm/gems/ruby-2.2.1/bin:$HOME/.rvm/gems/ruby-2.2.1@global/bin:$HOME/.rvm/rubies/ruby-2.2.1/bin:/usr/local/heroku/bin:$HOME/.rvm/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.npm/bin:$HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/.rvm/bin:$HOME/.npm/bin:$HOME/bin
+export PATH=$PATH:/usr/local/heroku/bin:/usr/local/heroku/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.npm/bin:$HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/.npm/bin:$HOME/bin
 
 export QT_SELECT=5
 
@@ -116,3 +118,4 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
+chruby 2.3
