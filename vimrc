@@ -80,6 +80,7 @@ augroup vimrcEx
   autocmd FileType md setlocal spell
   autocmd FileType gitcommit setlocal spell
   autocmd BufNewFile,BufRead hg-editor-*.txt setlocal spell textwidth=80
+  au BufRead,BufNewFile *.md setlocal spell textwidth=80
 augroup end
 
 set background=dark
@@ -107,17 +108,4 @@ let g:rspec_command = 'call Send_to_Tmux("rspec {spec}\n")'
 
 set exrc
 set secure
-
-set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
-set statusline+=%*
-
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
-let g:syntastic_cpp_checkers = ["cpplint", "gcc"]
-
-let g:syntastic_cpp_cpplint_exec = 'cpplint'
-let g:syntastic_cpp_compiler = 'g++'
-let g:syntastic_cpp_compiler_options = ' -std=c++14'
+set fileformat=unix
