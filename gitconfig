@@ -1,6 +1,7 @@
 [user]
   email = chris@christopherjones.us
   name = Chris W Jones
+	signingkey = 95A3A694
 [alias]
   co = checkout
   cob = checkout -b
@@ -17,3 +18,4 @@
   default = current
 [commit]
  template = ~/.gitmessage
+	gpgsign = true
