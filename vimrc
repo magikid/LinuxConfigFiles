@@ -90,9 +90,17 @@ let g:NERDTreeDirArrows=0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/]\.(git|hg|svn)$',
+    \ 'dir': '\v[\/](_build|node_modules|target|dist|deps)|\.(git|hg|svn)\$',
     \ 'file': '\v\.(out)$',
     \ }
+
+if executable('ag')
+  set grepprg=ag\ --nogroup\ --nocolor
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_use_caching = 0
+  nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
+endif
+
 " RSpec.vim mappings
 map <Leader>t :call RunCurrentSpecFile()<CR>
 map <Leader>s :call RunNearestSpec()<CR>
