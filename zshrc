@@ -82,6 +82,9 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
+alias y="yaourt"
+alias p="pacman"
+alias vi="vim"
 
 fixssh() {
   for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
@@ -96,10 +99,11 @@ dirsize(){
   du -cxh -d 1 | sort -h
 }
 
-source ~/.venvburrito/startup.sh
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
+source /usr/share/chruby/chruby.sh
+source /usr/share/chruby/auto.sh
+source ~/.cargo/env
 export EDITOR="vim"
+export VISUAL="vim"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
@@ -118,4 +122,4 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
-chruby 2.3
+chruby $(chruby | sed -e 's/\*//' | tail -1)
