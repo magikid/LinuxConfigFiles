@@ -82,9 +82,10 @@ export LANG=en_US.UTF-8
 # Example aliases
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
-alias y="yaourt"
-alias p="pacman"
+alias p="pacaur"
+alias pm="pacman"
 alias vi="vim"
+alias t="todo.sh"
 
 fixssh() {
   for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
