@@ -84,7 +84,8 @@ export LANG=en_US.UTF-8
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 alias p="pacaur"
 alias pm="pacman"
-alias vi="vim"
+alias vim="nvim"
+alias vi="nvim"
 alias t="todo.sh"
 
 fixssh() {
@@ -103,8 +104,8 @@ dirsize(){
 source /usr/share/chruby/chruby.sh
 source /usr/share/chruby/auto.sh
 source ~/.cargo/env
-export EDITOR="vim"
-export VISUAL="vim"
+export EDITOR="nvim"
+export VISUAL="nvim"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 export PATH="$HOME/.linuxbrew/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
