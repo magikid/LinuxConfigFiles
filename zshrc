@@ -101,8 +101,8 @@ dirsize(){
   du -cxh -d 1 | sort -h
 }
 
-source /usr/share/chruby/chruby.sh
-source /usr/share/chruby/auto.sh
+source /usr/local/share/chruby/chruby.sh
+source /usr/local/share/chruby/auto.sh
 source ~/.cargo/env
 export EDITOR="nvim"
 export VISUAL="nvim"
