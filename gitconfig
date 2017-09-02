@@ -1,14 +1,21 @@
 [user]
-	email = chris@christopherjones.us
-	name = Chris W Jones
+  email = chris@christopherjones.us
+  name = Chris W Jones
+	signingkey = 95A3A694
 [alias]
-	co = checkout
-	cob = checkout -b
+  co = checkout
+  cob = checkout -b
   b = branch
   bd = branch -d
-	ci = commit -v
-	st = status
-	ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
-	
+  ci = commit -v
+  st = status
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  unstage = reset HEAD
+
+[merge]
+  tool = vimdiff
 [push]
-	default = simple
+  default = current
+[commit]
+ template = ~/.gitmessage
+	gpgsign = true
