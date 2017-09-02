@@ -1,0 +1,2 @@
+TAGS="zsh nvim git"
+EXCLUDES="README.md LICENSE"
