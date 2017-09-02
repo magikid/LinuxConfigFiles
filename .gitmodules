@@ -1,54 +1,54 @@
 [submodule "vim/bundle/nerdtree"]
-	path = vim/bundle/nerdtree
+	path = tag-vim/vim/bundle/nerdtree
 	url = https://github.com/scrooloose/nerdtree.git
 [submodule "vim/bundle/tabular"]
-	path = vim/bundle/tabular
+	path = tag-vim/vim/bundle/tabular
 	url = https://github.com/godlygeek/tabular.git
 [submodule "vim/bundle/vim-colors-solarized"]
-	path = vim/bundle/vim-colors-solarized
+	path = tag-vim/vim/bundle/vim-colors-solarized
 	url = https://github.com/altercation/vim-colors-solarized.git
 [submodule "vim/bundle/supertab"]
-	path = vim/bundle/supertab
+	path = tag-vim/vim/bundle/supertab
 	url = git@github.com:ervandew/supertab.git
 [submodule "vim/bundle/ctrlp.vim"]
-	path = vim/bundle/ctrlp.vim
+	path = tag-vim/vim/bundle/ctrlp.vim
 	url = git@github.com:ctrlpvim/ctrlp.vim.git
 [submodule "vim/bundle/vim-rspec"]
-	path = vim/bundle/vim-rspec
+	path = tag-vim/vim/bundle/vim-rspec
 	url = git@github.com:thoughtbot/vim-rspec.git
 [submodule "vim/bundle/vim-tmux-navigator"]
-	path = vim/bundle/vim-tmux-navigator
+	path = tag-vim/vim/bundle/vim-tmux-navigator
 	url = git@github.com:christoomey/vim-tmux-navigator.git
 [submodule "vim/bundle/vim-endwise"]
-	path = vim/bundle/vim-endwise
+	path = tag-vim/vim/bundle/vim-endwise
 	url = git@github.com:tpope/vim-endwise.git
 [submodule "vim/bundle/tslime.vim"]
-	path = vim/bundle/tslime.vim
+	path = tag-vim/vim/bundle/tslime.vim
 	url = git@github.com:jgdavey/tslime.vim.git
 [submodule "vim/bundle/rust.vim"]
-	path = vim/bundle/rust.vim
+	path = tag-vim/vim/bundle/rust.vim
 	url = https://github.com/rust-lang/rust.vim.git
 [submodule "vim/bundle/syntax"]
-	path = vim/bundle/syntax
+	path = tag-vim/vim/bundle/syntax
 	url = https://github.com/octol/vim-cpp-enhanced-highlight.git
 [submodule "vim/bundle/YouCompleteMe"]
 	path = vim/bundle/YouCompleteMe
 	url = git@github.com:Valloric/YouCompleteMe.git
 [submodule "vim/bundle/syntastic"]
-	path = vim/bundle/syntastic
+	path = tag-vim/vim/bundle/syntastic
 	url = git@github.com:scrooloose/syntastic.git
 [submodule "vim/bundle/vim-wakatime"]
-	path = vim/bundle/vim-wakatime
+	path = tag-vim/vim/bundle/vim-wakatime
 	url = git://github.com/wakatime/vim-wakatime.git
 [submodule "vim/bundle/emmet-vim"]
-	path = vim/bundle/emmet-vim
+	path = tag-vim/vim/bundle/emmet-vim
 	url = git@github.com:mattn/emmet-vim.git
 [submodule "vim/bundle/vim-elixir"]
-	path = vim/bundle/vim-elixir
+	path = tag-vim/vim/bundle/vim-elixir
 	url = https://github.com/elixir-lang/vim-elixir.git
 [submodule "vim/bundle/neomake"]
-	path = vim/bundle/neomake
+	path = tag-vim/vim/bundle/neomake
 	url = git@github.com:neomake/neomake.git
 [submodule "vim/bundle/vim-pathogen"]
-	path = vim/bundle/vim-pathogen
+	path = tag-vim/vim/bundle/vim-pathogen
 	url = git@github.com:tpope/vim-pathogen.git
