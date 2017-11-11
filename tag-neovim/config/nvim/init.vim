@@ -1,21 +1,24 @@
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
-Plug 'scrooloose/nerdtree'
-Plug 'godlygeek/tabular'
 Plug 'altercation/vim-colors-solarized'
-Plug 'ervandew/supertab'
-Plug 'ctrlpvim/ctrlp.vim'
-Plug 'thoughtbot/vim-rspec'
 Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'jgdavey/tslime.vim'
+Plug 'mattn/emmet-vim'
+Plug 'neomake/neomake'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'thoughtbot/vim-rspec'
 Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
-Plug 'jgdavey/tslime.vim'
-Plug 'rust-lang/rust.vim'
-Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'tpope/vim-bundler'
 Plug 'wakatime/vim-wakatime'
-Plug 'mattn/emmet-vim'
-Plug 'elixir-lang/vim-elixir'
-Plug 'neomake/neomake'
+Plug 'janko-m/vim-test'
+Plug 'Valloric/YouCompleteMe'
 call plug#end()
 
 set bs=indent,eol,start
@@ -123,3 +126,7 @@ let g:neomake_serialize_abort_on_error = 1
 
 map <F5> :make<CR>
 :set list listchars=tab:»·,trail:·
+
+nmap <silent> <leader>t :TestNearest<CR>
+nmap <silent> <leader>T :TestFile<CR>
+nmap <silent> <leader>a :TestSuite<CR>
