@@ -1,7 +1,7 @@
 [user]
   email = chris@christopherjones.us
   name = Chris W Jones
-  signingkey = 95A3A694
+  signingkey = CB9F3B58E8E17327
 [alias]
   co = checkout
   cob = checkout -b
