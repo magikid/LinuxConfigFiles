@@ -1,0 +1,13 @@
+set header_cache = ~/.cache/mutt
+set message_cachedir = ~/.cache/mutt
+set mail_check = 120
+
+auto_view text/html
+alternative_order text/plain text/html
+
+# IMAP: offlineimap
+set folder = "~/Mail"
+source ~/.mutt/muttrc.mailboxes
+set spoolfile = "+INBOX"
+set record = "+Sent\ Items"
+set postponed = "+Drafts"
