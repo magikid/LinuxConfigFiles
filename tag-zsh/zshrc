@@ -19,7 +19,7 @@ ZSH_THEME="lambda"
 # DISABLE_AUTO_UPDATE="true"
 
 # Uncomment the following line to change how often to auto-update (in days).
- export UPDATE_ZSH_DAYS=30
+ export UPDATE_ZSH_DAYS=14
 
 # Uncomment the following line to disable colors in ls.
 # DISABLE_LS_COLORS="true"
@@ -106,7 +106,7 @@ source ~/.cargo/env
 export EDITOR="nvim"
 export VISUAL="nvim"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
-export PATH="$HOME/.linuxbrew/bin:$PATH"
+export PATH="$HOME/.linuxbrew/bin:$HOME/.config/composer/vendor/bin:$PATH"
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export PATH=$PATH:/usr/local/heroku/bin:/usr/local/heroku/bin:/usr/local/heroku/bin:/usr/lib64/qt-3.3/bin:/usr/local/bin:/usr/bin:/usr/local/sbin:/usr/sbin:$HOME/.npm/bin:$HOME/bin:$HOME/.local/bin:$HOME/bin:$HOME/.npm/bin:$HOME/bin
