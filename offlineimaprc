@@ -1,0 +1,364 @@
+# Offlineimap sample configuration file
+
+# This file documents *all* possible options and can be quite scary.
+# Looking for a quick start?  Take a look at offlineimap.conf.minimal.
+# More details can be found at http://www.offlineimap.org .
+
+##################################################
+# Overview
+##################################################
+
+# The default configuration file is "~/.offlineimaprc".
+#
+# Offlineimap ships with a file named "offlineimap.conf" that you should copy to
+# that location and then edit.
+#
+# Offlineimap also ships a file named "offlineimap.conf.minimal" that you can
+# also try.  It's useful if you want to get started with the most basic feature
+# set, and you can read about other features later with "offlineimap.conf".
+#
+# If you want to be XDG-compatible, you can put your configuration file into
+# "$XDG_CONFIG_HOME/offlineimap/config".
+
+##################################################
+# General definitions
+##################################################
+
+# NOTE 1: Settings generally support python interpolation. This means
+# values can contain python format strings which refer to other values
+# in the same section, or values in a special DEFAULT section. This
+# allows you for example to use common settings for multiple accounts:
+#
+# [Repository Gmail1]
+# trashfolder: %(gmailtrashfolder)s
+#
+# [Repository Gmail2]
+# trashfolder: %(gmailtrashfolder)s
+#
+# [DEFAULT]
+# gmailtrashfolder = [Gmail]/Papierkorb
+#
+# would set the trashfolder setting for your German Gmail accounts.
+
+# NOTE 2: Above feature implies that any '%' needs to be encoded as '%%'
+
+# NOTE 3: Any variable that is subject to the environment variables
+# ($NAME) and tilde (~username/~) expansions will receive tilde
+# expansion first and only after the environment variable will be
+# expanded in the resulting string. This behaviour is intentional
+# as it coincides with typical shell expansion strategy.
+
+# NOTE 4: multiple same-named sections.
+# The library used to parse the configuration file has known issue when multiple
+# sections have the same name. In such case, only the last section is considered.
+# It is strongly discouraged to have multiple sections with the same name.
+# See https://github.com/OfflineIMAP/offlineimap/issues/143 for more details.
+
+[general]
+accounts = fastmail
+
+
+# By default, Offlineimap will not exit due to a network error until the
+# operating system returns an error code.  Operating systems can sometimes take
+# forever to notice this.  Here you can activate a timeout on the socket.  This
+# timeout applies to individual socket reads and writes, not to an overall sync
+# operation.  You could perfectly well have a 30s timeout here and your sync
+# still take minutes.
+#
+# Values in the 30-120 second range are reasonable.
+#
+# The default is to have no timeout beyond the OS.  Times are given in seconds.
+#
+socktimeout = 30
+
+##################################################
+# Mailbox name recorder
+##################################################
+
+[mbnames]
+
+# Offlineimap can record your mailbox names in a format you specify.
+# You can define the header, each mailbox item, the separator,
+# and the footer.  Here is an example for Mutt.
+# If enabled is yes, all settings except incremental must be specified, even if
+# they are just the empty string "".
+#
+# The header, peritem, sep, and footer are all Python expressions passed
+# through eval, so you can (and must) use Python quoting.
+#
+# The incremental setting controls whether the file is written after each
+# account completes or once all synced accounts are complete. This is useful if
+# an account is sightly slower than the other. It allows keeping the previous
+# file rather than having it partially written.
+# This works best with "no" if in one-shot mode started by cron or systemd
+# timers. Default: no.
+#
+# The following hash key are available to the expansion for 'peritem':
+# - accountname: the name of the corresponding account;
+# - foldername: the name of the folder;
+# - localfolders: path to the local directory hosting all Maildir
+#   folders for the account.
+#
+# Tilde and environment variable expansions will be performed
+# for "filename" knob.
+#
+enabled = yes
+filename = ~/.mutt/muttrc.mailboxes
+header = "mailboxes "
+peritem = "+%(accountname)s/%(foldername)s"
+sep = " "
+footer = "\n"
+incremental = no
+
+
+##################################################
+# Accounts
+##################################################
+
+# This is an account definition clause.  You'll have one of these for each
+# account listed in the "accounts" option in [general] section (above).
+[Account fastmail]
+
+# These settings specify the two folders that you will be syncing.
+# You'll need to have a "Repository ..." section for each one.
+localrepository = fastmail-local
+remoterepository = fastmail-remote
+
+
+# OfflineImap can replace a number of full updates by quick synchronizations.
+# This option is ignored if maxage or startdate are used.
+#
+# It only synchronizes a folder if
+#
+#   1) a Maildir folder has changed
+#
+# or
+#
+#   2) if an IMAP folder has received new messages or had messages deleted, ie
+#   it does not update if only IMAP flags have changed.
+#
+# Full updates need to fetch ALL flags for all messages, so this makes quite a
+# performance difference (especially if syncing between two IMAP servers).
+#
+# Specify 0 for never, -1 for always (works even in non-autorefresh mode)
+#
+# A positive integer <n> to do <n> quick updates before doing another full
+# synchronization (requires autorefresh).  Updates are always performed after
+# <autorefresh> minutes, be they quick or full.
+#
+quick = 10
+
+
+[Repository fastmail-local]
+
+# Each repository requires a "type" declaration. The types supported for
+# local repositories are Maildir, GmailMaildir and IMAP.
+#
+type = Maildir
+
+
+# This option stands in the [Repository LocalExample] section.
+#
+# Specify local repository.  Your IMAP folders will be synchronized
+# to maildirs created under this path.  Offlineimap will create the
+# maildirs for you as needed.
+#
+localfolders = ~/Mail
+
+
+
+# This option stands in the [Repository LocalExample] section.
+#
+# Propagate deletions from local to remote. Messages deleted in this repository
+# won't get deleted on remote if set to "no". Default is yes.
+#
+# See sync_deletes in the RemoteExample section, too.
+#
+sync_deletes = no
+
+
+[Repository fastmail-remote]
+# The remote repository.  We only support IMAP or Gmail here.
+#
+type = IMAP
+
+# Specify the remote hostname.
+#
+remotehost = imap.fastmail.com
+
+
+# Whether or not to use STARTTLS. STARTTLS allows to upgrade a plain connection
+# to TLS or SSL after negotiation with the server. While a server might pretend
+# to support STARTTLS, the communication might not be properly established or
+# the secure tunnel might be broken in some way. In this case you might want to
+# disable STARTTLS. Unless you hit issues with STARTTLS, you are strongly
+# encouraged to keep STARTTLS enabled.
+#
+# STARTTLS can be used even if the 'ssl' option is disabled. If you want to
+# _force_ STARTTLS, you might need to disable 'ssl'.
+#
+# Default is yes.
+#
+starttls = no
+
+
+# Whether or not to use SSL.
+#
+# Note: be care to configure the 'remotehost' line with the domain name defined
+# in the certificate. E.g., if you trust your provider and want to use the
+# certificate it provides on a shared server. Otherwise, Offlineimap will stop
+# and say that the domain is not named in the certificate.
+#
+# Default is yes.
+#
+ssl = yes
+
+
+# SSL CA Cert(s) to verify the server cert against (optional).
+# No SSL verification is done without this option. If it is
+# specified, the CA Cert(s) need to verify the Server cert AND
+# match the hostname (* wildcard allowed on the left hand side)
+# The certificate should be in PEM format.
+#
+# Tilde and environment variable expansions will be performed.
+#
+# Special value OS-DEFAULT makes Offlineimap to automatically
+# determine system-wide location of standard trusted CA roots file
+# for known OS distributions and use the first bundle encountered
+# (if any).  If no system-wide CA bundle is found, Offlineimap
+# will refuse to continue; this is done to prevent creation
+# of false security expectations ("I had configured CA bundle,
+# thou certificate verification shalt be present").
+#
+# You can also use fingerprint verification via cert_fingerprint.
+# See below for more verbose explanation.
+#
+sslcacertfile = OS-DEFAULT
+
+
+# Specify the port.  If not specified, use a default port.
+#
+remoteport = 993
+
+
+# Specify the remote user name.
+#
+remoteuser = magikid@fastmail.fm
+
+########## Passwords
+
+# There are six ways to specify the password for the IMAP server:
+#
+# 1. No password at all specified in the config file.
+#    If a matching entry is found in ~/.netrc (see netrc (5) for
+#    information) this password will be used. Do note that netrc only
+#    allows one entry per hostname. If there is no ~/.netrc file but
+#    there is an /etc/netrc file, the password will instead be taken
+#    from there. Otherwise you will be prompted for the password when
+#    Offlineimap starts when using a UI that supports this.
+#
+# 2. The remote password stored in this file with the remotepass
+#    option. Save this file with the UTF-8 encoding if your server expect UTF-8
+#    encoded password.
+#
+#    Any '%' needs to be encoded as '%%'. Example:
+#
+# 3. The remote password stored as a single line in an external file, which is
+#    referenced by the remotefile option. Must be UTF-8 encoded. Example:
+#remotepassfile = ~/Password.IMAP.Account1
+#
+# 4. With a preauth tunnel.  With this method, you invoke an external
+#    program that is guaranteed *NOT* to ask for a password, but rather
+#    to read from stdin and write to stdout an IMAP procotol stream that
+#    begins life in the PREAUTH state.  When you use a tunnel, you do
+#    NOT specify a user or password (if you do, they'll be ignored.)
+#    Instead, you specify a preauthtunnel, as this example illustrates
+#    for Courier IMAP on Debian:
+#preauthtunnel = ssh -q imaphost '/usr/bin/imapd ./Maildir'
+#
+# 5. If you are using Kerberos and have the Python Kerberos package
+#    installed, you should not specify a remotepass.  If the user has a
+#    valid Kerberos TGT, Offlineimap will figure out the rest all by
+#    itself, and fall back to password authentication if needed.
+#
+# 6. Using arbitrary python code.  With this method, you invoke a
+#    function from your pythonfile.  To use this method assign the name
+#    of the function to the variable 'remotepasseval'.  Example:
+#remotepasseval = get_password("imap.example.net")
+#    You can also query for the username:
+#remoteusereval = get_username("imap.example.net")
+#    This method can be used to design more elaborate setups, e.g. by
+#    querying the gnome-keyring via its python bindings.
+
+
+# In between synchronisations, Offlineimap can monitor mailboxes for new
+# messages using the IDLE command. If you want to enable this, specify here the
+# folders you wish to monitor. IMAP protocol requires a separate connection for
+# each folder monitored in this way, so setting this option will force settings
+# for:
+#
+#  - maxconnections: to be at least the number of folders you give
+#  - holdconnectionopen: to be true
+#  - keepalive: to be 29 minutes unless you specify otherwise
+#  - singlethreadperfolder: to be true
+#
+# The presynchook and postsynchook are executed for each new synchronisation per
+# folder.
+#
+# This feature isn't complete and may well have problems. See the "Known Issues"
+# entry in the manual for more details.
+#
+# This option should return a Python list. For example
+#
+#idlefolders = ['INBOX']
+
+
+# Offlineimap can use a compressed connection to the IMAP server.
+# This can result in faster downloads for some cases.
+#
+usecompression = yes
+
+
+# Offlineimap can use multiple connections to the server in order
+# to perform multiple synchronization actions simultaneously.
+# This may place a higher burden on the server.  In most cases,
+# setting this value to 2 or 3 will speed up the sync, but in some
+# cases, it may slow things down.  The safe answer is 1.  You should
+# probably never set it to a value more than 5.
+#
+maxconnections = 5
+
+
+# Normally, Offlineimap will expunge deleted messages from the server.  You can
+# disable that if you wish.  This means that Offlineimap will mark them deleted
+# on the server, but not actually delete them.  You must use some other IMAP
+# client to delete them if you use this setting; otherwise, the messages will
+# just pile up there forever.  Therefore, this setting is definitely NOT
+# recommended for a long term.
+#
+# Default is yes.
+#
+expunge = no
+
+
+# This option stands in the [Repository RemoteExample] section.
+#
+# Propagate deletions from remote to local. Messages deleted in this repository
+# won't get deleted on the local repository if set to "no". Default is yes.
+#
+# See sync_deletes in the LocalExample section, too.
+#
+sync_deletes = yes
+
+
+# Enable 1-way synchronization. When setting 'readonly' to True, this
+# repository will not be modified during synchronization. Usefull to
+# e.g. backup an IMAP server. The readonly setting can be applied to any
+# type of Repository (Maildir, Imap, etc).
+#
+# Notice that this does NOT mean that the local Maildir can be used with a
+# read-only filesystem When OfflineImap uploads a new email, it is assigned a
+# new UID by the remote which is stored in the filename. Otherwise, Offlineimap
+# would have no way to map the UID to the file.
+#
+readonly = True
