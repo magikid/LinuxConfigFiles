@@ -88,14 +88,13 @@ alias vim="nvim"
 alias vi="nvim"
 alias t="todo.sh"
 
-fixssh() {
-  for key in SSH_AUTH_SOCK SSH_CONNECTION SSH_CLIENT; do
-    if (tmux show-environment | grep "^${key}" > /dev/null); then
-      value=`tmux show-environment | grep "^${key}" | sed -e "s/^[A-Z_]*=//"`
-      export ${key}="${value}"
-    fi
-  done
-}
+# Launch SSH agent if not running
+if ! ps aux |grep $(whoami) |grep ssh-agent |grep -v grep >/dev/null; then ssh-agent > /dev/null; fi
+
+# Link the latest ssh-agent socket
+ln -sf $(find /tmp -maxdepth 2 -type s -name "agent*" -user $USER -printf '%T@ %p\n' 2>/dev/null |sort -n|tail -1|cut -d' ' -f2) ~/.ssh/ssh_auth_sock
+
+export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
 
 dirsize(){
   du -cxh -d 1 | sort -h
