@@ -88,17 +88,12 @@ alias vim="nvim"
 alias vi="nvim"
 alias t="todo.sh"
 
-# Launch SSH agent if not running
-if ! ps aux |grep $(whoami) |grep ssh-agent |grep -v grep >/dev/null; then ssh-agent > /dev/null; fi
-
-# Link the latest ssh-agent socket
-ln -sf $(find /tmp -maxdepth 2 -type s -name "agent*" -user $USER -printf '%T@ %p\n' 2>/dev/null |sort -n|tail -1|cut -d' ' -f2) ~/.ssh/ssh_auth_sock
-
-export SSH_AUTH_SOCK=~/.ssh/ssh_auth_sock
-
 dirsize(){
   du -cxh -d 1 | sort -h
 }
+
+gpg-agent --daemon --enable-ssh-support > ~/.gnupg/env_vars.soure 2>/dev/null
+source ~/.gnupg/env_vars.source
 
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
