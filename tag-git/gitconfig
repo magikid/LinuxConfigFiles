@@ -9,10 +9,11 @@
   bd = branch -d
   ci = commit -v
   st = status
-  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ls = log --pretty=format:"%C(yellow)%h%C(green)\\ %cr%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  la = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --all --graph
   unstage = reset HEAD
   ap = add -p
-
+  dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
 [merge]
   tool = meld
 [diff]
@@ -24,3 +25,5 @@
   gpgsign = true
 [rebase]
   autosquash = true
+[include]
+  path = .gitconfig.local
