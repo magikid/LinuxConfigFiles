@@ -1,11 +1,46 @@
 set nocompatible
 
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+" Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
+call plug#begin('~/.config/nvim/plugged')
+Plug 'altercation/vim-colors-solarized'
+Plug 'christoomey/vim-tmux-navigator'
+Plug 'ctrlpvim/ctrlp.vim'
+Plug 'elixir-lang/vim-elixir'
+Plug 'ervandew/supertab'
+Plug 'godlygeek/tabular'
+Plug 'janko-m/vim-test'
+Plug 'jgdavey/tslime.vim'
+Plug 'jwalton512/vim-blade'
+Plug 'mattn/emmet-vim'
+Plug 'neomake/neomake'
+Plug 'octol/vim-cpp-enhanced-highlight'
+Plug 'rust-lang/rust.vim'
+Plug 'scrooloose/nerdtree'
+Plug 'thoughtbot/vim-rspec'
+Plug 'tpope/vim-rails'
+Plug 'tpope/vim-endwise'
+Plug 'tpope/vim-bundler'
+Plug 'wakatime/vim-wakatime'
+Plug 'Valloric/YouCompleteMe'
+Plug 'lumiliet/vim-twig'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'joonty/vdebug'
+Plug 'crusoexia/vim-monokai'
+Plug 'vim-syntastic/syntastic'
+call plug#end()
+
+
 if v:lang =~ "utf8$" || v:lang =~ "UTF-8$"
   set fileencodings=ucs-bom,utf-8,latin1
 endif
-
-runtime bundle/vim-pathogen/autoload/pathogen.vim
-execute pathogen#infect()
 
 set bs=indent,eol,start
 set viminfo='20,\"500
