@@ -1,3 +1,9 @@
+if empty(glob('~/.config/nvim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+      \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+    autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+  endif
+
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
 Plug 'altercation/vim-colors-solarized'
@@ -20,6 +26,11 @@ Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-bundler'
 Plug 'wakatime/vim-wakatime'
 Plug 'Valloric/YouCompleteMe'
+Plug 'lumiliet/vim-twig'
+Plug 'tpope/vim-fugitive'
+Plug 'airblade/vim-gitgutter'
+Plug 'joonty/vdebug'
+Plug 'crusoexia/vim-monokai'
 call plug#end()
 
 set bs=indent,eol,start
@@ -86,13 +97,11 @@ augroup vimrcEx
 augroup end
 
 set background=dark
-colorscheme solarized
 
-let g:NERDTreeDirArrows=0
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
-    \ 'dir': '\v[\/](_build|node_modules|target|dist|deps)|\.(git|hg|svn)\$',
+    \ 'dir': '\v[\/](app[\/]cache|_build|node_modules|target|dist|deps)|\.(git|hg|svn)\$',
     \ 'file': '\v\.(out)$',
     \ }
 
@@ -131,3 +140,15 @@ map <F5> :make<CR>
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
+
+set clipboard=unnamed
+
+" NERDTree Settings
+autocmd StdinReadPre * let s:std_in=1
+autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+
+" Monokai
+set termguicolors
+colorscheme monokai
+
+autocmd filetype crontab setlocal nobackup nowritebackup
