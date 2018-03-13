@@ -1,2 +1,3 @@
+HOSTNAME="cjonesmbpx12.local"
 TAGS="zsh neovim git"
 EXCLUDES="README.md LICENSE"
