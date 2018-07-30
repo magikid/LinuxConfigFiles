@@ -1,4 +1,4 @@
-PATH=$HOME/.composer/vendors/bin:$PATH
+PATH=$HOME/.composer/vendor/bin:$PATH
 source /Users/cjone0102/.asdf/asdf.sh
 export SSH_AUTH_SOCK=$HOME/.gnupg/S.gpg-agent.ssh
 
