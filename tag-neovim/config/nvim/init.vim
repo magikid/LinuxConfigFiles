@@ -6,6 +6,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
+Plug 'guns/vim-clojure-static'
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -31,6 +32,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'joonty/vdebug'
 Plug 'crusoexia/vim-monokai'
+Plug 'kien/rainbow_parentheses.vim'
 call plug#end()
 
 set bs=indent,eol,start
@@ -150,5 +152,11 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 " Monokai
 set termguicolors
 colorscheme monokai
+
+" RainbowParenthesis
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 
 autocmd filetype crontab setlocal nobackup nowritebackup
