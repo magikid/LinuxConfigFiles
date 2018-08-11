@@ -142,6 +142,7 @@ map <F5> :make<CR>
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 nmap <silent> <leader>a :TestSuite<CR>
+nmap <Space> :set hlsearch!<CR>
 
 set clipboard=unnamed
 

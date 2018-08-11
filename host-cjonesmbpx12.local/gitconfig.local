@@ -1,0 +1,5 @@
+[user]
+  email = chris.jones@cbsinteractive.com
+  name = Chris W Jones
+[commit]
+  gpgsign = false
