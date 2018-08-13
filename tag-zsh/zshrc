@@ -105,6 +105,7 @@ source /usr/local/share/chruby/auto.sh
 source ~/.cargo/env
 export EDITOR="nvim"
 export VISUAL="nvim"
+export LESS="-R"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
