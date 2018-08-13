@@ -25,6 +25,8 @@
 [commit]
   template = ~/.gitmessage
   gpgsign = true
+[gpg]
+  program = gpg
 [rebase]
   autosquash = true
 [transfer]
