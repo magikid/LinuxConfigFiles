@@ -14,6 +14,8 @@
   unstage = reset HEAD
   ap = add -p
   dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  ctags = !.git/hooks/ctags
+  parent = !git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'
 [merge]
   tool = meld
 [diff]
@@ -33,3 +35,5 @@
   fsckobjects = true
 [include]
   path = .gitconfig.local
+[init]
+  templatedir = ~/.git_template
