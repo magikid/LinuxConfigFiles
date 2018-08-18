@@ -1,0 +1,4 @@
+HOSTNAME="philipjfry"
+TAGS="zsh neovim git"
+EXCLUDES="README.md LICENSE"
+UNDOTTED="bin"

@@ -1,0 +1,6 @@
+export OPENSC=/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+
+if [ -f $HOME/.gnupg/env_vars.source ]; then
+  gpg-agent --daemon --enable-ssh-support > ~/.gnupg/env_vars.source 2>/dev/null
+  source ~/.gnupg/env_vars.source
+fi

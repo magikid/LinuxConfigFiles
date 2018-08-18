@@ -95,11 +95,6 @@ dirsize(){
   du -cxh -d 1 | sort -h
 }
 
-if [ -f $HOME/.gnupg/env_vars.source ]; then
-  gpg-agent --daemon --enable-ssh-support > ~/.gnupg/env_vars.source 2>/dev/null
-  source ~/.gnupg/env_vars.source
-fi
-
 source /usr/local/share/chruby/chruby.sh
 source /usr/local/share/chruby/auto.sh
 source ~/.cargo/env
