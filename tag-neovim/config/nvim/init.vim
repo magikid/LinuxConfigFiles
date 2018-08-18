@@ -26,13 +26,13 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-bundler'
 Plug 'wakatime/vim-wakatime'
-Plug 'Valloric/YouCompleteMe'
 Plug 'lumiliet/vim-twig'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'joonty/vdebug'
 Plug 'crusoexia/vim-monokai'
 Plug 'kien/rainbow_parentheses.vim'
+Plug 'ajh17/VimCompletesMe'
 call plug#end()
 
 set bs=indent,eol,start
@@ -161,3 +161,6 @@ au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
 autocmd filetype crontab setlocal nobackup nowritebackup
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/local/bin/python3'
+au BufRead,BufNewFile *.txt setlocal textwidth=80
