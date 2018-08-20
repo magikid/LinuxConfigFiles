@@ -5,3 +5,7 @@ if [ ! -f $HOME/.gnupg/env_vars.source ]; then
 fi
 
 source ~/.gnupg/env_vars.source
+
+. $HOME/.asdf/asdf.sh
+
+. $HOME/.asdf/completions/asdf.bash
