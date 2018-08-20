@@ -95,8 +95,6 @@ dirsize(){
   du -cxh -d 1 | sort -h
 }
 
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
 source ~/.cargo/env
 export EDITOR="nvim"
 export VISUAL="nvim"
@@ -129,7 +127,6 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
-chruby $(chruby | sed -e 's/\*//' | tail -1)
 
 # Include environment specific config if file is readable
 if [ -r ~/.zshrc.local ]; then
