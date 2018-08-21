@@ -95,22 +95,15 @@ dirsize(){
   du -cxh -d 1 | sort -h
 }
 
-if [ -f $HOME/.gnupg/env_vars.source ]; then
-  gpg-agent --daemon --enable-ssh-support > ~/.gnupg/env_vars.source 2>/dev/null
-  source ~/.gnupg/env_vars.source
-fi
-
-[ -f /usr/local/etc/profile.d/autojump.sh ] && . /usr/local/etc/profile.d/autojump.sh
-source /usr/local/share/chruby/chruby.sh
-source /usr/local/share/chruby/auto.sh
 source "$HOME/.cargo/env"
 export EDITOR="nvim"
 export VISUAL="nvim"
-export RIPGREP_CONFIG_PATH="$HOME/.ripgreprc"
+export LESS="-R"
 export NODE_PATH=/usr/lib/nodejs:/usr/lib/node_modules:/usr/share/javascript:/usr/local/lib/node_modules
 export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
 export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export PYENV_ROOT="$HOME/.pyenv"
+export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
 export PATH=/usr/local/go/bin:$PATH
 export PATH=$HOME/go/bin:$PATH
@@ -124,7 +117,7 @@ export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/sbin:$PATH
 export PATH=$HOME/.npm/bin:$PATH
-export PATH=$HOME/bin:$PATH
+export PATH=$HOME/.bin:$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export QT_SELECT=5
 
@@ -138,7 +131,6 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
-chruby $(chruby | sed -e 's/\*//' | tail -1)
 
 # Include environment specific config if file is readable
 if [ -r ~/.zshrc.local ]; then

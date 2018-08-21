@@ -6,6 +6,7 @@ if empty(glob('~/.config/nvim/autoload/plug.vim'))
 
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
+Plug 'guns/vim-clojure-static'
 Plug 'altercation/vim-colors-solarized'
 Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
@@ -25,12 +26,13 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 Plug 'tpope/vim-bundler'
 Plug 'wakatime/vim-wakatime'
-Plug 'Valloric/YouCompleteMe'
 Plug 'lumiliet/vim-twig'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'joonty/vdebug'
 Plug 'crusoexia/vim-monokai'
+Plug 'kien/rainbow_parentheses.vim'
+Plug 'ajh17/VimCompletesMe'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
@@ -153,4 +155,13 @@ autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
 set termguicolors
 colorscheme monokai
 
+" RainbowParenthesis
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
+
 autocmd filetype crontab setlocal nobackup nowritebackup
+let g:deoplete#enable_at_startup = 1
+let g:python3_host_prog = '/usr/local/bin/python3'
+au BufRead,BufNewFile *.txt setlocal textwidth=80
