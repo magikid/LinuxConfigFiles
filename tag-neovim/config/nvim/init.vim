@@ -31,6 +31,7 @@ Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
 Plug 'joonty/vdebug'
 Plug 'crusoexia/vim-monokai'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 set bs=indent,eol,start
