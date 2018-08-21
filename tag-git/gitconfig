@@ -17,6 +17,9 @@
   dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   ctags = !.git/hooks/ctags
   parent = !git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'
+  set-upstream-to-track-origin-same-branch-name = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+  old-branches = !git for-each-ref --format='%(committerdate) %09 %(authorname) %09 %(refname)' | sort -k5nr -k2Mr -k3nr -k4nr | grep \"$(git config --get user.name)\"
+  uncommit = reset HEAD^
   ignored = !git ls-files -v | grep "^[[:lower:]]"
   ignore = update-index --assume-unchanged
   unignore = update-index --no-assume-unchanged

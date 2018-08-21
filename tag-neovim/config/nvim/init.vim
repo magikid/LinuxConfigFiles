@@ -33,6 +33,7 @@ Plug 'joonty/vdebug'
 Plug 'crusoexia/vim-monokai'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ajh17/VimCompletesMe'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 
 set bs=indent,eol,start

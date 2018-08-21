@@ -1,0 +1,8 @@
+# No super long lines
+--max-columns=250
+# always color, add a heading, add line numbers
+--pretty
+# Probably don't care about capitalization
+--smart-case
+# all the threads!
+--threads=8
