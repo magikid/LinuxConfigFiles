@@ -11,11 +11,15 @@
   st = status
   ls = log --pretty=format:"%C(yellow)%h%C(green)\\ %cr%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
   la = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --all --graph
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   unstage = reset HEAD
   ap = add -p
   dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   ctags = !.git/hooks/ctags
   parent = !git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'
+  ignored = !git ls-files -v | grep "^[[:lower:]]"
+  ignore = update-index --assume-unchanged
+  unignore = update-index --no-assume-unchanged
 [merge]
   tool = meld
 [diff]
