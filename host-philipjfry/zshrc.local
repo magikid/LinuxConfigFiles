@@ -1,11 +1,12 @@
 export OPENSC=/usr/lib/x86_64-linux-gnu/opensc-pkcs11.so
+export MANPATH="$HOME/.linuxbrew/share/man:$MANPATH"
+export PATH="$HOME/.linuxbrew/bin:$HOME/.linuxbrew/sbin:$PATH"
+export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 
 if [ ! -f $HOME/.gnupg/env_vars.source ]; then
   gpg-agent --daemon --enable-ssh-support > ~/.gnupg/env_vars.source 2>/dev/null
 fi
 
 source ~/.gnupg/env_vars.source
-
-. $HOME/.asdf/asdf.sh
-
-. $HOME/.asdf/completions/asdf.bash
+source $HOME/.asdf/asdf.sh
+source $HOME/.asdf/completions/asdf.bash
