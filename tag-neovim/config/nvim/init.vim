@@ -105,12 +105,12 @@ let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
 let g:ctrlp_custom_ignore = {
     \ 'dir': '\v[\/](app[\/]cache|_build|node_modules|target|dist|deps)|\.(git|hg|svn)\$',
-    \ 'file': '\v\.(out)$',
+    \ 'file': '\v\.(out|data)$',
     \ }
 
-if executable('ag')
+if executable('rg')
   set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g ""'
+  let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore node_modules --ignore app/cache'
   let g:ctrlp_use_caching = 0
   nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 endif
