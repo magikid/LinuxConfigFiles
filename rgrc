@@ -1,5 +1,5 @@
 # No super long lines
---max-columns=250
+--max-columns=500
 # always color, add a heading, add line numbers
 --pretty
 # Probably don't care about capitalization
