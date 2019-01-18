@@ -1,3 +1,4 @@
 **/*/vim/swap/*
 **/*/vim/backups/*
 **/*/config/nvim/plugged
+tag-neovim/config/nvim/undos/*

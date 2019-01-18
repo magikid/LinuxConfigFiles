@@ -71,6 +71,12 @@ set nowrap
 set sidescroll=1
 set sidescrolloff=20
 
+set undofile
+set undodir=~/.config/nvim/undos
+let s:undos = split(globpath(&undodir, '*'), "\n")
+call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
+call map(s:undos, 'delete(v:val)')
+
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
