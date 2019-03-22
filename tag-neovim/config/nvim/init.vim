@@ -144,7 +144,7 @@ let g:neomake_serialize = 1
 let g:neomake_serialize_abort_on_error = 1
 
 map <F5> :make<CR>
-:set list listchars=tab:»·,trail:·
+set list listchars=tab:»·,trail:·
 
 nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
