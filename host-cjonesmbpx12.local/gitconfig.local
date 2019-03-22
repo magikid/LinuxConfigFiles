@@ -2,7 +2,9 @@
   email = chris.jones@cbsinteractive.com
   name = Chris W Jones
 [commit]
-  gpgsign = false
+  gpgsign = true
+[gpg]
+  program = /usr/local/bin/gpg
 [merge]
   tool = p4mergetool
 [diff]
@@ -22,3 +24,5 @@
   merge-dev = !git cob $(git rev-parse --abbrev-ref HEAD)-dev && git pull origin gcp_dev
   merge-alpha = !git cob $(git rev-parse --abbrev-ref HEAD)-alpha && git pull origin gcp_alpha
   merge-staging = !git cob $(git rev-parse --abbrev-ref HEAD)-stage && git pull origin stage
+[core]
+  editor = "code --wait"
