@@ -50,7 +50,10 @@ HIST_STAMPS="mm/dd/yyyy"
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(gitfast vim venv hg mercurial docker-compose zsh-autosuggestions brew asdf composer docker tmuxinator)
+# With autosuggestions
+#plugins=(emoji gitfast vim venv hg mercurial docker-compose zsh-autosuggestions brew asdf composer docker tmuxinator)
+# Without autosuggestions
+plugins=(emoji gitfast vim venv hg mercurial docker-compose brew asdf composer docker tmuxinator)
 
 # User configuration
 
@@ -90,6 +93,8 @@ alias t="todo.sh"
 alias ag="ag --color --pager='less -R'"
 alias ..="cd .."
 alias ...="cd ../.."
+alias ....="cd ../../.."
+
 
 dirsize(){
   du -cxh -d 1 | sort -h
@@ -120,7 +125,7 @@ export PATH=$HOME/.npm/bin:$PATH
 export PATH=$HOME/.bin:$HOME/bin:$PATH
 export PATH=$HOME/.local/bin:$PATH
 export QT_SELECT=5
-export PROMPT="%(?:😎:💩)  $PROMPT"
+export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
 
 # Add this to your zshrc or bzshrc file
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
@@ -139,5 +144,4 @@ if [ -r ~/.zshrc.local ]; then
 fi
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 
-ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
-ZSH_AUTOSUGGEST_USE_ASYNC='1'
+#ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE='fg=23'
