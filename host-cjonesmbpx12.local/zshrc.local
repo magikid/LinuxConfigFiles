@@ -1,5 +1,4 @@
 source /Users/cjone0102/.asdf/asdf.sh
-source /Users/cjone0102/.asdf/installs/ruby/2.5.1/lib/ruby/gems/2.5.0/gems/tmuxinator-0.12.0/completion/tmuxinator.zsh
 
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export GROOVY_HOME="/usr/local/opt/groovy/libexec"
@@ -9,7 +8,9 @@ export CFLAGS="-I/usr/local/opt/openssl/include"
 export PATH="/opt/resin/bin:$PATH"
 export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
-export PATH="/usr/local/opt/php@5.6/bin:/usr/local/opt/php@5.6/sbin:$PATH"
+export PATH="/usr/local/opt/python/libexec/bin:$PATH"
+# Uncomment next line to default to php 5.6
+#export PATH="/usr/local/opt/php@5.6/bin:/usr/local/opt/php@5.6/sbin:$PATH"
 
 eval "$(jenv init -)"
 
@@ -18,3 +19,31 @@ if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+validate-composer(){
+  if [[ ! -f 'composer.json' ]]; then
+    echo "No composer.json found";
+    exit 1
+  fi
+  echo "Validating composer.json"
+
+  docker run \
+    --env SYMFONY_ENV=${SYMFONY_ENV:-dev_cms} \
+    --env USE_INTL_ICU_DATA_VERSION=true \
+    --env SYMFONY_DEBUG=${SYMFONY_DEBUG:-1} \
+    --volume $PWD:/var/www/html \
+    --log-driver "none" \
+    --interactive \
+    --tty \
+    --rm \
+    docker.cnet.com/cnet/cli:2.2.1 \
+    php -d memory_limit=-1 bin/composer.phar validate --no-check-publish --no-check-all
+}
+
+# ASDF PHP Config
+# PEAR was compromised so let's not use it
+export PHP_WITHOUT_PEAR=yes
+# Setup the paths to compile php
+export PATH="/usr/local/opt/bison/bin:/usr/local/opt/icu4c/bin:/usr/local/opt/icu4c/sbin:$PATH"
+export PHP_CONFIGURE_OPTIONS="--with-iconv=/usr/local/opt/libiconv --with-openssl=/usr/local/opt/openssl"
+gpgconf --launch gpg-agent
