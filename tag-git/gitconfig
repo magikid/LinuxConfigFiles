@@ -26,7 +26,7 @@
   ignored = !git ls-files -v | grep "^[[:lower:]]"
   ignore = update-index --assume-unchanged
   unignore = update-index --no-assume-unchanged
-  feature = !git co master && git pull origin && git cob
+  feature = !git co master && git fetch && git pull origin && git cob
 [merge]
   tool = meld
 [diff]
