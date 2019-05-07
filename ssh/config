@@ -1,0 +1,15 @@
+Include config.local
+
+Host *
+  # Use my normal ssh keys
+  AddKeysToAgent yes
+  UseKeychain yes
+  IdentityFile ~/.ssh/id_rsa
+  # Send a keepalive packet every 240s
+  ServerAliveInterval 240
+
+  # Multiplex connections, keep them alive
+  ControlMaster auto
+  ControlPath /tmp/%r@%h:%p
+  ControlPersist yes
+
