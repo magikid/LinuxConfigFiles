@@ -2,7 +2,7 @@
   email = chris.jones@cbsinteractive.com
   name = Chris W Jones
 [commit]
-  gpgsign = true
+  gpgsign = false
 [gpg]
   program = /usr/local/bin/gpg
 [merge]
