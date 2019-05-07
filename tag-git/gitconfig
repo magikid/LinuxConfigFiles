@@ -57,7 +57,7 @@
 	cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
 	trustExitCode = true
 [rerere]
-	enabled = true
+	enabled = false
 [core]
 	excludesfile = /Users/cjone0102/.gitignore_global
 	autocrlf = input
