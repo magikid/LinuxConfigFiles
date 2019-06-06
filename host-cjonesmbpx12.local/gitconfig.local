@@ -4,7 +4,7 @@
 [commit]
   gpgsign = false
 [gpg]
-  program = /usr/local/bin/gpg
+  program = gpg
 [merge]
   tool = p4mergetool
 [diff]
@@ -25,4 +25,4 @@
   merge-alpha = !git cob $(git rev-parse --abbrev-ref HEAD)-alpha && git pull origin gcp_alpha
   merge-staging = !git cob $(git rev-parse --abbrev-ref HEAD)-stage && git pull origin stage
 [core]
-  editor = "code --wait"
+#  editor = "code --wait"
