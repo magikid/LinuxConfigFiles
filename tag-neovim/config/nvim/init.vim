@@ -115,8 +115,8 @@ let g:ctrlp_custom_ignore = {
     \ }
 
 if executable('rg')
-  set grepprg=ag\ --nogroup\ --nocolor
-  let g:ctrlp_user_command = 'ag %s -l --nocolor -g "" --ignore node_modules --ignore app/cache'
+  set grepprg=rg\ --color=never
+  let g:ctrlp_user_command = 'rg %s --files --color=never --glob ""'
   let g:ctrlp_use_caching = 0
   nnoremap K :grep! "\b<C-R><C-W>\b"<CR>:cw<CR>
 endif
@@ -171,3 +171,5 @@ autocmd filetype crontab setlocal nobackup nowritebackup
 let g:deoplete#enable_at_startup = 1
 let g:python3_host_prog = '/usr/local/bin/python3'
 au BufRead,BufNewFile *.txt setlocal textwidth=80
+
+set wildignore+=*/.git/*,*/tmp/*,*.swp,*/node_modules/*
