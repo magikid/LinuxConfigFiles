@@ -95,6 +95,9 @@ alias ..="cd .."
 alias ...="cd ../.."
 alias ....="cd ../../.."
 alias ls="ls -h"
+alias nq="nix-env -qaP"
+alias ni="nix-env -i"
+alias nl="nix-env -q"
 
 
 dirsize(){
