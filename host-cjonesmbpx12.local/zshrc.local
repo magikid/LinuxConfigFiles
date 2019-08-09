@@ -36,7 +36,7 @@ validate-composer(){
     --interactive \
     --tty \
     --rm \
-    docker.cnet.com/cnet/cli:2.2.1 \
+    docker.cnet.com/cnet/cli:3.2.5 \
     php -d memory_limit=-1 bin/composer.phar validate --no-check-publish --no-check-all
 }
 
