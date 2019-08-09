@@ -99,6 +99,29 @@ alias nq="nix-env -qaP"
 alias ni="nix-env -i"
 alias nl="nix-env -q"
 
+archive-folder() {
+  if [[ -z "$1" ]]; then
+    echo "Missing folder to archive"
+    return
+  fi
+
+  local folder_name="$1"
+  local gzip_file="$folder_name-$(date +%Y-%m-%d).tar.gz"
+  echo "gziping folder"
+  tar -czf "$gzip_file" "$folder_name"
+  ls -havl "$gzip_file"
+  echo -n "Delete folder $folder_name? [y/n] "
+  read delete_response
+
+  if [[ "$delete_response" == "y" ]] || [[ "$delete_response" == "Y" ]]; then
+    echo "Deleting $folder_name..."
+    sleep 5
+    rm -r "$folder_name"
+  else
+    echo "Skipping file deletion"
+    return
+  fi
+}
 
 dirsize(){
   du -cxh -d 1 | sort -h
@@ -134,6 +157,11 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export QT_SELECT=5
 export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
 
+# Include environment specific config if file is readable
+if [ -r ~/.zshrc.local ]; then
+  source ~/.zshrc.local
+fi
+
 # Add this to your zshrc or bzshrc file
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 
@@ -144,9 +172,4 @@ ensure_tmux_is_running() {
 }
 
 ensure_tmux_is_running
-
-# Include environment specific config if file is readable
-if [ -r ~/.zshrc.local ]; then
-  source ~/.zshrc.local
-fi
 
