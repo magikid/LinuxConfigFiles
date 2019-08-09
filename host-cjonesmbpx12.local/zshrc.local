@@ -1,4 +1,5 @@
 source /Users/cjone0102/.asdf/asdf.sh
+source /Users/cjone0102/.nix-profile/etc/profile.d/nix.sh
 
 export SSH_AUTH_SOCK="$HOME/.gnupg/S.gpg-agent.ssh"
 export GROOVY_HOME="/usr/local/opt/groovy/libexec"
@@ -6,13 +7,10 @@ export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CFLAGS="-I/usr/local/opt/openssl/include"
 
 export PATH="/opt/resin/bin:$PATH"
-export PATH="$HOME/.jenv/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
-# Uncomment next line to default to php 5.6
-#export PATH="/usr/local/opt/php@5.6/bin:/usr/local/opt/php@5.6/sbin:$PATH"
-
-eval "$(jenv init -)"
+export PATH="/Users/cjone0102/.nix-profile/bin:$PATH"
+export PATH="$HOME/.local/bin:$PATH"
 
 # The next line updates PATH for the Google Cloud SDK.
 if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc'; fi
