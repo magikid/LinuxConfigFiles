@@ -23,17 +23,7 @@ validate-composer(){
   fi
   echo "Validating composer.json"
 
-  docker run \
-    --env SYMFONY_ENV=${SYMFONY_ENV:-dev_cms} \
-    --env USE_INTL_ICU_DATA_VERSION=true \
-    --env SYMFONY_DEBUG=${SYMFONY_DEBUG:-1} \
-    --volume $PWD:/var/www/html \
-    --log-driver "none" \
-    --interactive \
-    --tty \
-    --rm \
-    docker.cnet.com/cnet/cli:3.2.5 \
-    php -d memory_limit=-1 bin/composer.phar validate --no-check-publish --no-check-all
+  composer validate --no-check-publish --no-check-all
 }
 
 # ASDF PHP Config
