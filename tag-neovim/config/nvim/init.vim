@@ -173,3 +173,11 @@ let g:python3_host_prog = '/usr/local/bin/python3'
 au BufRead,BufNewFile *.txt setlocal textwidth=80
 
 set wildignore+=*/.git/*,*/tmp/*,*.swp,*/node_modules/*
+
+let g:tmux_navigator_no_mappings = 1
+
+nnoremap <silent> <C-h> :TmuxNavigateLeft<cr>
+nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
+nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
+nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
+nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
