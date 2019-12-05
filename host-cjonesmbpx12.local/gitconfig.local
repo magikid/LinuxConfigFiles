@@ -21,8 +21,9 @@
   cmd = /Applications/Sourcetree.app/Contents/Resources/opendiff-w.sh \"$LOCAL\" \"$REMOTE\" -ancestor \"$BASE\" -merge \"$MERGED\"
   trustExitCode = true
 [alias]
+  merge-qa = !git cob $(git rev-parse --abbrev-ref HEAD)-dev && git pull origin qa
   merge-dev = !git cob $(git rev-parse --abbrev-ref HEAD)-dev && git pull origin gcp_dev
-  merge-alpha = !git cob $(git rev-parse --abbrev-ref HEAD)-alpha && git pull origin gcp_alpha
+  merge-alpha = !git cob $(git rev-parse --abbrev-ref HEAD)-alpha && git pull origin alpha
   merge-staging = !git cob $(git rev-parse --abbrev-ref HEAD)-stage && git pull origin stage
 [core]
 #  editor = "code --wait"
