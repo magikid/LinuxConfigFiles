@@ -29,13 +29,20 @@ Plug 'wakatime/vim-wakatime'
 Plug 'lumiliet/vim-twig'
 Plug 'tpope/vim-fugitive'
 Plug 'airblade/vim-gitgutter'
-Plug 'joonty/vdebug'
 Plug 'crusoexia/vim-monokai'
 Plug 'kien/rainbow_parentheses.vim'
 Plug 'ajh17/VimCompletesMe'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'autozimu/LanguageClient-neovim', {
+    \ 'branch': 'next',
+    \ 'do': 'bash install.sh',
+    \ }
+Plug 'junegunn/fzf'
+Plug 'moby/moby' , {'rtp': '/contrib/syntax/vim/'}
+Plug 'tpope/vim-commentary'
 call plug#end()
 
+let mapleader = " "
 set bs=indent,eol,start
 set viminfo='20,\"500
 set ruler
@@ -143,7 +150,7 @@ autocmd! BufReadPost,BufWritePost * Neomake
 let g:neomake_serialize = 1
 let g:neomake_serialize_abort_on_error = 1
 
-map <F5> :make<CR>
+map <F6> :make<CR>
 set list listchars=tab:»·,trail:·
 
 nmap <silent> <leader>t :TestNearest<CR>
@@ -154,8 +161,14 @@ nmap <Space> :set hlsearch!<CR>
 set clipboard=unnamed
 
 " NERDTree Settings
+" Uncomment next two lines to only launch NERDTree when no file is specified
 autocmd StdinReadPre * let s:std_in=1
 autocmd VimEnter * if argc() == 0 && !exists("s:std_in") | NERDTree | endif
+" Next line will open NERDTree always
+" autocmd vimenter * NERDTree
+" Next line closes vim when only NERDTree is open
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
 
 " Monokai
 set termguicolors
@@ -181,3 +194,21 @@ nnoremap <silent> <C-j> :TmuxNavigateDown<cr>
 nnoremap <silent> <C-k> :TmuxNavigateUp<cr>
 nnoremap <silent> <C-l> :TmuxNavigateRight<cr>
 nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
+
+" You will have bad experience for diagnostic messages when it's default 4000.
+set updatetime=300
+
+" LanguageClient config
+let g:LanguageClient_serverCommands = {
+    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
+    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
+    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
+    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
+    \ }
+let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
+let g:LanguageClient_loadSettings = 1
+nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+
+" Run cargo fmt on save
+let g:rustfmt_autosave = 1
