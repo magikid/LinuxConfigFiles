@@ -9,6 +9,7 @@ export PATH="/opt/resin/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
+export PATH="$HOME/.pear/bin:$PATH"
 
 validate-composer(){
   if [[ ! -f 'composer.json' ]]; then
@@ -33,3 +34,7 @@ if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+function cloud-ip() {
+  gcloud compute instances list --filter="name=($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
+}
