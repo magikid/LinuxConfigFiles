@@ -29,3 +29,5 @@ nginx
 tvguide
 traefik
 #nheritence
+README
+Dockerfile
