@@ -251,6 +251,9 @@ else
 endif
 let g:neomake_open_list = 2
 
+let g:neomake_php_phpcs_exe = './bin/dockertools phpcs'
+let g:neomake_php_enabled_makers = ['phpcs', 'phpstan']
+
 " Set tab and trailing space characters
 set list listchars=tab:»·,trail:·
 
