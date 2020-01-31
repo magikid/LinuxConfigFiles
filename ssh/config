@@ -11,4 +11,5 @@ Host *
   ControlMaster auto
   ControlPath /tmp/%r@%h:%p
   ControlPersist yes
+  ForwardAgent yes
 
