@@ -3,8 +3,10 @@
   name = Chris W Jones
   signingkey = CB9F3B58E8E17327
 [alias]
-  co = checkout
-  cob = checkout -b
+  co = switch
+  s = switch
+  cob = switch --create
+  sc = switch --create
   b = branch
   bd = branch -d
   ci = commit -v
@@ -26,7 +28,7 @@
   ignored = !git ls-files -v | grep "^[[:lower:]]"
   ignore = update-index --assume-unchanged
   unignore = update-index --no-assume-unchanged
-  feature = !git co master && git fetch && git pull origin && git cob
+  feature = !git s master && git fetch && git pull origin && git sc
 [merge]
   tool = meld
 [diff]
