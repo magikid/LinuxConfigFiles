@@ -157,8 +157,8 @@ syntax enable
 " Load plugins and indent settings based on filetypes
 filetype plugin indent on
 
-" Create autocommand group
-augroup vimrcEx
+" Create autocommand group for spell checking and tag generation
+augroup spellingAug
   " Clear out this autocommand group on load
   autocmd!
   " Spell check markdown files
@@ -171,6 +171,7 @@ augroup vimrcEx
   autocmd FileType gitcommit setlocal spell
   " Spell check mercurial commits
   autocmd BufNewFile,BufRead hg-editor-*.txt setlocal spell textwidth=80
+augroup end
 
 " Autocommand group for vim-php-namespace commands
 augroup phpNameSpaceAug
