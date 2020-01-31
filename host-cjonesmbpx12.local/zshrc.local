@@ -37,5 +37,9 @@ if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/U
 if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
 
 function cloud-ip() {
-  gcloud compute instances list --filter="name=($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
+  gcloud compute instances list --project=i-cnet-dev --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
+}
+
+function prod-cloud-ip() {
+  gcloud compute instances list --project=i-cnet-prod --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
 }
