@@ -53,7 +53,7 @@ HIST_STAMPS="mm/dd/yyyy"
 # With autosuggestions
 #plugins=(emoji gitfast vim venv hg mercurial docker-compose zsh-autosuggestions brew asdf composer docker tmuxinator)
 # Without autosuggestions
-plugins=(emoji gitfast vim venv hg mercurial docker-compose brew asdf composer docker fzf)
+plugins=(emoji gitfast vim-interaction virtualenv mercurial docker-compose brew asdf composer docker fzf mix)
 
 # User configuration
 
