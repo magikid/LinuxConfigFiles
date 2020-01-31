@@ -5,6 +5,7 @@ export GROOVY_HOME="/usr/local/opt/groovy/libexec"
 export LDFLAGS="-L/usr/local/opt/openssl/lib"
 export CFLAGS="-I/usr/local/opt/openssl/include"
 
+export PATH="$HOME/Library/Python/3.7/bin:$PATH"
 export PATH="/opt/resin/bin:$PATH"
 export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
