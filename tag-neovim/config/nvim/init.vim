@@ -62,6 +62,8 @@ Plug 'junegunn/fzf'
 Plug 'tpope/vim-commentary'
 " Add use statements to PHP with <Leader>-u
 Plug 'arnaud-lb/vim-php-namespace'
+" Handle tags generation automatically
+Plug 'ludovicchabant/vim-gutentags'
 call plug#end()
 
 " Set <Leader> to a single space
@@ -192,11 +194,16 @@ augroup end
 " Sort php use statements alphabetically after insert
 let g:php_namespace_sort_after_insert = 1
 
+" Autocmds related to tags generation and quickfix window
+augroup tagAug
+  autocmd!
   " Generate a tags file on save
-  autocmd BufWritePost *.php silent! !eval '[ -f ".git/hooks/ctags" ] && .git/hooks/ctags' &
+  autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 augroup end
 
-set tags=./.git/tags,tags;~
+" Adds tags.vendor to tags path
+set tags^=tags.vendor
+
 
 " Map <Ctrl>-p to controlp
 let g:ctrlp_map = '<c-p>'
@@ -320,3 +327,6 @@ set rtp+=/usr/local/opt/fzf
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Map F6 to running make
 map <F6> :make<CR>
+
+" Shows when gutentags is generating the tags file in the status
+set statusline+=%{gutentags#statusline()}
