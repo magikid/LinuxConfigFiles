@@ -69,6 +69,9 @@ Plug 'skywind3000/gutentags_plus'
 Plug 'StanAngeloff/php.vim'
 " Automatically set tabs based on current file tabs
 Plug 'tpope/vim-sleuth'
+" Fancy statusline
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 call plug#end()
 
 " Allow backspace over autoindents, line breaks, and line starts
@@ -333,6 +336,8 @@ let g:rustfmt_autosave = 1
 " Use fzf for vim
 set rtp+=/usr/local/opt/fzf
 
+" Set the airline statusbar theme
+let g:airline_theme="bubblegum"
 
 """ Leader key shortcuts
 " Set <Leader> to a space
