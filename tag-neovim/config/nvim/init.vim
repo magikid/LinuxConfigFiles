@@ -67,8 +67,6 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 call plug#end()
 
-" Set <Leader> to a single space
-let mapleader = " "
 " Allow backspace over autoindents, line breaks, and line starts
 set bs=indent,eol,start
 " ¯\_(ツ)_/¯ something about marks in files
@@ -266,14 +264,6 @@ let g:neomake_php_enabled_makers = ['phpcs', 'phpstan']
 " Set tab and trailing space characters
 set list listchars=tab:»·,trail:·
 
-" Run tests using neomake
-let test#strategy = "neomake"
-" Run the closest test with <Space>t
-nmap <silent> <leader>t :TestNearest<CR>
-" Run all tests in the file with <Space>T
-nmap <silent> <leader>T :TestFile<CR>
-" Run the whole suite with <Space>a
-nmap <silent> <leader>a :TestSuite<CR>
 " Also use <Space> to toggle search highlighting
 nmap <Space> :set hlsearch!<CR>
 
@@ -335,7 +325,26 @@ let g:rustfmt_autosave = 1
 " Use fzf for vim
 set rtp+=/usr/local/opt/fzf
 
-" Function key shortcuts
+
+""" Leader key shortcuts
+" Set <Leader> to a space
+let mapleader = " "
+" Run the closest test with <Space>t
+nmap <silent> <leader>t :TestNearest<CR>
+" Run all tests in the file with <Space>T
+nmap <silent> <leader>T :TestFile<CR>
+" Run the whole suite with <Space>a
+nmap <silent> <leader>a :TestSuite<CR>
+" Use the movement keys to navigate tabs, h & l move left/right respectively
+" j moves to the first tab and k moves to the last tab
+map <leader>l :tabnext<CR>
+map <leader>h :tabprevious<CR>
+map <leader>j :tabfirst<CR>
+map <leader>k :tablast<CR>
+" Close a tab with leader-x
+map <leader>x :tabclose<CR>
+
+""" Function key shortcuts
 " Open the langauge client menu
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Map F6 to running make
