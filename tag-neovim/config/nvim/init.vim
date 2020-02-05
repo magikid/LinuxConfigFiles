@@ -348,6 +348,3 @@ map <leader>x :tabclose<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Map F6 to running make
 map <F6> :make<CR>
-
-" Shows when gutentags is generating the tags file in the status
-set statusline+=%{gutentags#statusline()}
