@@ -67,6 +67,8 @@ Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
 " PHP Syntax highlighting
 Plug 'StanAngeloff/php.vim'
+" Automatically set tabs based on current file tabs
+Plug 'tpope/vim-sleuth'
 call plug#end()
 
 " Allow backspace over autoindents, line breaks, and line starts
