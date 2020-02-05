@@ -65,6 +65,8 @@ Plug 'arnaud-lb/vim-php-namespace'
 " Handle tags generation automatically
 Plug 'ludovicchabant/vim-gutentags'
 Plug 'skywind3000/gutentags_plus'
+" PHP Syntax highlighting
+Plug 'StanAngeloff/php.vim'
 call plug#end()
 
 " Allow backspace over autoindents, line breaks, and line starts
