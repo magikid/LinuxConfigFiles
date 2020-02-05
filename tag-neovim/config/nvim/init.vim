@@ -258,14 +258,18 @@ else
 endif
 let g:neomake_open_list = 2
 
-let g:neomake_php_phpcs_exe = './bin/dockertools phpcs'
+let g:neomake_php_phpcs_exe = '/Users/cjone0102/.composer/vendor/bin/phpcs'
+let g:neomake_php_phpcs_args_standard = "Symfony2"
 let g:neomake_php_enabled_makers = ['phpcs', 'phpstan']
+let g:neomake_php_phpstan_args = "--autoload-file=app/autoload.php"
 
 " Set tab and trailing space characters
 set list listchars=tab:»·,trail:·
 
 " Also use <Space> to toggle search highlighting
 nmap <Space> :set hlsearch!<CR>
+" Use dockertools for phpunit tests
+let test#php#phpunit#executable = "./bin/dockertools phpunit"
 
 " Use the * clipboard
 set clipboard=unnamed
