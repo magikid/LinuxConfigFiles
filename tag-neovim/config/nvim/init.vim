@@ -187,18 +187,9 @@ augroup phpNameSpaceAug
   " Clear out this autocommand group on load
   autocmd!
 
-  function! IPhpInsertUse()
-      call PhpInsertUse()
-      call feedkeys('a',  'n')
-  endfunction
-
-  " Setup <Leader>-u to add use statement for object under cursor in insert mode
-  autocmd FileType php inoremap <Leader>u <Esc>:call IPhpInsertUse()<CR>
-  " Setup <Leader>-u in regular mode
+  " Setup <Leader>-u to add use statement for object under cursor in normal mode
   autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-  " Sort php use statements with <Leader>-s in insert mode
-  autocmd FileType php inoremap <Leader>s <Esc>:call PhpSortUse()<CR>
-  " Sort php use in normal mode
+  " Sort php use statements with <Leader>-s in normal mode
   autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
 augroup end
 " Sort php use statements alphabetically after insert
