@@ -3,7 +3,7 @@
   name = Chris W Jones
   signingkey = CB9F3B58E8E17327
 [alias]
-  co = switch
+  co = checkout
   s = switch
   cob = switch --create
   sc = switch --create
