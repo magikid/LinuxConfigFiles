@@ -72,6 +72,10 @@ Plug 'tpope/vim-sleuth'
 " Fancy statusline
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
+" Add matching braces and quotes automagically
+Plug 'jiangmiao/auto-pairs'
+" Adds php language server
+Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 call plug#end()
 
 " Allow backspace over autoindents, line breaks, and line starts
