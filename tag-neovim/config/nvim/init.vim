@@ -64,7 +64,6 @@ Plug 'tpope/vim-commentary'
 Plug 'arnaud-lb/vim-php-namespace'
 " Handle tags generation automatically
 Plug 'ludovicchabant/vim-gutentags'
-Plug 'skywind3000/gutentags_plus'
 " PHP Syntax highlighting
 Plug 'StanAngeloff/php.vim'
 " Automatically set tabs based on current file tabs
@@ -111,7 +110,7 @@ set hidden
 " Don't wrap long lines
 set nowrap
 
-" Use two spaces for tab
+" Use two spaces for tab and expand out any <Tab>s to spaces
 set tabstop=2
 " Use two spaces for autoindent tabs
 set shiftwidth=2
@@ -136,14 +135,6 @@ let s:undos = split(globpath(&undodir, '*'), "\n")
 call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
 " Same for this one, no idea what it does
 call map(s:undos, 'delete(v:val)')
-
-" Tie gutentags_plus into gutentags
-let g:gutentags_modules = ['ctags', 'gtags_cscope']
-" generate datebases in my cache directory, prevent gtags files polluting my project
-let g:gutentags_cache_dir = expand('~/.cache/tags')
-" Disable gutentags_plus key maps
-let g:gutentags_plus_nomap = 1
-
 
 " Make it easier to jump between split panes with Ctrl-h etc instead of
 " Ctrl-w,h
@@ -366,3 +357,6 @@ map <leader>x :tabclose<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Map F6 to running make
 map <F6> :make<CR>
+
+" Shows when gutentags is generating the tags file in the status
+set statusline+=%{gutentags#statusline()}
