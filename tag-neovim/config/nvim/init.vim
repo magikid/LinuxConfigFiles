@@ -202,9 +202,15 @@ augroup tagAug
   autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
 augroup end
 
+" Add autogroup for tag generation
+augroup tagAug
+  autocmd!
+  " If we're working in a git commit (or similar), disable tag file generation
+  autocmd FileType git,gitcommit,gitrebase,gitsendemail :let g:gutentags_enabled=0
+augroup end
+
 " Adds tags.vendor to tags path
 set tags^=tags.vendor
-
 
 " Map <Ctrl>-p to controlp
 let g:ctrlp_map = '<c-p>'
