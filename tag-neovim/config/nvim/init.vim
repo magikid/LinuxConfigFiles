@@ -334,16 +334,16 @@ nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 " Run the whole suite with <Space>a
 nmap <silent> <leader>a :TestSuite<CR>
-" Use the movement keys to navigate tabs, h & l move left/right respectively
-" j moves to the first tab and k moves to the last tab
-map <leader>l :tabnext<CR>
-map <leader>h :tabprevious<CR>
-map <leader>j :tabfirst<CR>
-map <leader>k :tablast<CR>
-" Close a tab with leader-x
-map <leader>x :tabclose<CR>
 
 """ Function key shortcuts
+" Toggle the NerdTree pane with F1
+nnoremap <F1> :NERDTreeToggle<CR>
+" Previous tab with F2
+map <F2> :tabprevious<CR>
+" Next tab with F3
+map <F3> :tabnext<CR>
+" Close a tab with F4
+map <F4> :tabclose<CR>
 " Open the langauge client menu
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Map F6 to running make
