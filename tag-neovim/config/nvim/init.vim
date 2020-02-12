@@ -33,6 +33,8 @@ Plug 'mattn/emmet-vim'
 Plug 'rust-lang/rust.vim'
 " Pretty file tree panel
 Plug 'scrooloose/nerdtree'
+" Add git status to nerdtree
+Plug 'Xuyuanp/nerdtree-git-plugin'
 " Lots of rails integration, https://github.com/tpope/vim-rails
 Plug 'tpope/vim-rails'
 " Automatically adds end statements in Ruby, ZSH, Elixir, maybe twig?
