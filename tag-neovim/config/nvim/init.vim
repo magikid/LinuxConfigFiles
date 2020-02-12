@@ -356,3 +356,5 @@ map <F4> :tabclose<CR>
 nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 " Map F6 to running make
 map <F6> :make<CR>
+" Map F7 to search through tags
+map <F7> :CtrlPTag<CR>
