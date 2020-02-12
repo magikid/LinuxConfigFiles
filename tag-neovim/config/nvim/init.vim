@@ -259,10 +259,17 @@ else
 endif
 let g:neomake_open_list = 2
 
+" Use this to run phpcs
 let g:neomake_php_phpcs_exe = '/Users/cjone0102/.composer/vendor/bin/phpcs'
+" Use the Symfony2 standard with phpcs
 let g:neomake_php_phpcs_args_standard = "Symfony2"
+" When editing php, only enable phpcs and phpstan
 let g:neomake_php_enabled_makers = ['phpcs', 'phpstan']
+" Sepcify the autoload file for phpstan, it was having trouble finding it
 let g:neomake_php_phpstan_args = "--autoload-file=app/autoload.php"
+" Defaults to tidy and htmlhint but tidy throws a bunch of false positives
+" when editing twigs so disable it for twigs
+let g:neomake_html_twig_enabled_makers = ["htmlhint"]
 
 " Set tab and trailing space characters
 set list listchars=tab:»·,trail:·
