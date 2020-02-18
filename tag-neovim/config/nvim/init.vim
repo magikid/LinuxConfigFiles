@@ -211,8 +211,17 @@ augroup tagAug
   autocmd FileType git,gitcommit,gitrebase,gitsendemail :let g:gutentags_enabled=0
 augroup end
 
-" Adds tags.vendor to tags path
-set tags^=tags.vendor
+" Only generate tags for files that rg knows about so it'll exclude .gitignore
+" folders
+let g:gutentags_file_list_command = 'rg --files'
+" Store all of our tag files in a central location instead of scattered around
+let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
+" Generate tags all the time
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_new = 1
+let g:gutentags_generate_on_missing = 1
+let g:gutentags_generate_on_write = 1
+let g:gutentags_generate_on_empty_buffer = 0
 
 " Map <Ctrl>-p to controlp
 let g:ctrlp_map = '<c-p>'
