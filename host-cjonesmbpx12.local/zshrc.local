@@ -43,3 +43,5 @@ function cloud-ip() {
 function prod-cloud-ip() {
   gcloud compute instances list --project=i-cnet-prod --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
 }
+
+export ZSH_THEME="powerlevel10k/powerlevel10k"
