@@ -374,3 +374,5 @@ nnoremap <F5> :call LanguageClient_contextMenu()<CR>
 map <F6> :make<CR>
 " Map F7 to search through tags
 map <F7> :CtrlPTag<CR>
+" Remove all trailing whitespace by pressing F8
+nnoremap <F8> :let _s=@/<Bar>:%s/\s\+$//e<Bar>:let @/=_s<Bar><CR>
