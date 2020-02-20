@@ -14,7 +14,7 @@
   st = status
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
   sl = log --oneline --decorate -20
-  sla = log --oneline --decorate -40
+  sla = log --oneline --decorate -60
   slap = log --oneline --decorate --graph --all
   unstage = reset HEAD
   ap = add -p
@@ -73,3 +73,5 @@
   smtpuser = magikid@fastmail.fm
   smtpencryption = tls
   smtpserverport = 465
+[mergetool]
+  keepBackup = false
