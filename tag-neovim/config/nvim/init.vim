@@ -358,6 +358,8 @@ nmap <silent> <leader>t :TestNearest<CR>
 nmap <silent> <leader>T :TestFile<CR>
 " Run the whole suite with <Space>a
 nmap <silent> <leader>a :TestSuite<CR>
+" Open NERDTree to the current file
+nmap <leader>n :NERDTreeFind<CR>
 
 """ Function key shortcuts
 " Toggle the NerdTree pane with F1
