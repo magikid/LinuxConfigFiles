@@ -11,6 +11,7 @@ export PATH="$HOME/.composer/vendor/bin:$PATH"
 export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.pear/bin:$PATH"
+export PATH="$HOME/Downloads/google-cloud-sdk/bin:$PATH"
 
 validate-composer(){
   if [[ ! -f 'composer.json' ]]; then
@@ -30,12 +31,6 @@ export PATH="/usr/local/opt/bison/bin:/usr/local/opt/icu4c/bin:/usr/local/opt/ic
 export PHP_CONFIGURE_OPTIONS="--with-iconv=/usr/local/opt/libiconv --with-openssl=/usr/local/opt/openssl"
 gpgconf --launch gpg-agent
 
-# The next line updates PATH for the Google Cloud SDK.
-if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc'; fi
-
-# The next line enables shell command completion for gcloud.
-if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
-
 function cloud-ip() {
   gcloud compute instances list --project=i-cnet-dev --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
 }
@@ -44,4 +39,8 @@ function prod-cloud-ip() {
   gcloud compute instances list --project=i-cnet-prod --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
 }
 
-export ZSH_THEME="powerlevel10k/powerlevel10k"
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
