@@ -190,9 +190,10 @@ augroup phpNameSpaceAug
   autocmd!
 
   " Setup <Leader>-u to add use statement for object under cursor in normal mode
-  autocmd FileType php noremap <Leader>u :call PhpInsertUse()<CR>
-  " Sort php use statements with <Leader>-s in normal mode
-  autocmd FileType php noremap <Leader>s :call PhpSortUse()<CR>
+  autocmd FileType php noremap <leader>u :call PhpInsertUse()<CR>
+  " Sort php use statements with <leader>-s in normal mode
+  autocmd FileType php noremap <leader>s :call PhpSortUse()<CR>
+  autocmd BufWritePre *.php call PhpSortUse()
 augroup end
 " Sort php use statements alphabetically after insert
 let g:php_namespace_sort_after_insert = 1
@@ -222,6 +223,8 @@ let g:gutentags_generate_on_new = 1
 let g:gutentags_generate_on_missing = 1
 let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
+let g:gutentags_ctags_extra_args = ["--php-kinds=cfit"]
+set tags+=./tags
 
 " Map <Ctrl>-p to controlp
 let g:ctrlp_map = '<c-p>'
