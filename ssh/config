@@ -3,7 +3,6 @@ Include config.local
 Host *
   # Use my normal ssh keys
   AddKeysToAgent yes
-  IdentityFile ~/.ssh/id_rsa
   # Send a keepalive packet every minute
   ServerAliveInterval 60
 
