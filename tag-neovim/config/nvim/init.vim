@@ -77,6 +77,8 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 " Adds php language server
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
+" Better php autocomplete
+Plug 'shawncplus/phpcomplete.vim'
 call plug#end()
 
 " Allow backspace over autoindents, line breaks, and line starts
