@@ -12,6 +12,7 @@ export PATH="/usr/local/opt/python/libexec/bin:$PATH"
 export PATH="$HOME/.local/bin:$PATH"
 export PATH="$HOME/.pear/bin:$PATH"
 export PATH="$HOME/Downloads/google-cloud-sdk/bin:$PATH"
+export PATH="$(brew --prefix openssh)/bin:$PATH"
 
 validate-composer(){
   if [[ ! -f 'composer.json' ]]; then
@@ -32,11 +33,44 @@ export PHP_CONFIGURE_OPTIONS="--with-iconv=/usr/local/opt/libiconv --with-openss
 gpgconf --launch gpg-agent
 
 function cloud-ip() {
-  gcloud compute instances list --project=i-cnet-dev --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
+  gcloud compute instances list --project=$2 --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP' | sed -e 's/"//g'
+}
+
+function cnet-cloud-ip() {
+  cloud-ip $1 "i-cnet-dev"
 }
 
 function prod-cloud-ip() {
   gcloud compute instances list --project=i-cnet-prod --filter="name:($1)" --format=json | jq '.[0].networkInterfaces[].networkIP'
+}
+
+function cmb-cloud-ip() {
+  cloud-ip $1 "i-cmb-dev"
+}
+
+function b2b-cloud-ip() {
+  cloud-ip $1 "i-b2b-dev"
+}
+
+function b2b-cloud-ssh() {
+  ssh $(b2b-cloud-ip $1)
+}
+
+function cnet-cloud-ssh() {
+  ssh $(cnet-cloud-ip $1)
+}
+
+function cmb-cloud-ssh() {
+  ssh $(cmb-cloud-ip $1)
+}
+
+# fbr - checkout git branch (including remote branches), sorted by most recent commit, limit 30 last branches
+function fbr() {
+  local branches branch
+  branches=$(git for-each-ref --count=30 --sort=-committerdate refs/heads/ --format="%(refname:short)") &&
+  branch=$(echo "$branches" |
+           fzf-tmux -d $(( 2 + $(wc -l <<< "$branches") )) +m) &&
+  git s $(echo "$branch" | sed "s/.* //" | sed "s#remotes/[^/]*/##")
 }
 
 # The next line updates PATH for the Google Cloud SDK.
@@ -44,3 +78,16 @@ if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/U
 
 # The next line enables shell command completion for gcloud.
 if [ -f '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/cjone0102/Downloads/google-cloud-sdk/completion.zsh.inc'; fi
+
+function gc() {
+  git clone "https://github.com/$1.git"
+}
+
+function clean-cmb-swarm() {
+  echo "Cleaning cmb-dev-swarm-worker-a-1"
+  ssh $(cmb-cloud-ip cmb-dev-swarm-worker-a-1) "df -h; sudo docker system prune -af" &
+  echo "Cleaning cmb-dev-swarm-worker-b-1"
+  ssh $(cmb-cloud-ip cmb-dev-swarm-worker-b-1) "df -h; sudo docker system prune -af" &
+  echo "Cleaning cmb-dev-swarm-worker-c-1"
+  ssh $(cmb-cloud-ip cmb-dev-swarm-worker-c-1) "df -h; sudo docker system prune -af" &
+}
