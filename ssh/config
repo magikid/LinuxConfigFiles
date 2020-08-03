@@ -1,14 +1,16 @@
 Include config.local
 
-Host *
-  # Use my normal ssh keys
-  AddKeysToAgent yes
-  # Send a keepalive packet every minute
-  ServerAliveInterval 60
+# Send a keepalive packet every minute
+ServerAliveInterval 10
+# Timeout the connection if two keepalives don't return
+ServerAliveCountMax 2
+# Use my normal ssh keys
+AddKeysToAgent yes
 
-  # Multiplex connections, keep them alive
+Host *
+  # Multiplex connections
   ControlMaster auto
-  ControlPath /tmp/%r@%h:%p
+  ControlPath /tmp/ssh-%h-%p-%r
   ControlPersist yes
   ForwardAgent yes
 
