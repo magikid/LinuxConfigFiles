@@ -1,8 +1,3 @@
-[user]
-  email = chris.jones@cbsinteractive.com
-  name = Chris W Jones
-[commit]
-  gpgsign = false
 [gpg]
   program = gpg
 [merge]
@@ -27,5 +22,3 @@
   merge-dev = !git cob $(git rev-parse --abbrev-ref HEAD)-dev && git pull origin gcp_dev
   merge-alpha = !git cob $(git rev-parse --abbrev-ref HEAD)-alpha && git pull origin alpha
   merge-staging = !git cob $(git rev-parse --abbrev-ref HEAD)-stage && git pull origin stage
-[core]
-#  editor = "code --wait"
