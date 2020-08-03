@@ -3,32 +3,43 @@
   name = Chris W Jones
   signingkey = CB9F3B58E8E17327
 [alias]
-  co = checkout
-  s = switch
-  cob = switch --create
-  sc = switch --create
+  ap = add -p
   b = branch
   bd = branch -d
   ci = commit -v
+  cia = commit --amend
+  cian = commit --amend --no-edit
+  cif = commit -v --fixup
+  co = checkout
+  cob = switch --create
   cp = cherry-pick
-  st = status
+  ctags = !.git/hooks/ctags
+  dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
+  ds = diff --staged
+  feature = !git s master && git fetch && git pull origin && git sc
+  ignore = update-index --skip-worktree
+  ignored = !git ls-files -v | grep "^S"
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  old-branches = !git for-each-ref refs/heads --format='%(committerdate)  %(authorname)  %(refname)' | sort -k5nr -k2Mr -k3nr -k4nr | grep \"$(git config --get user.name)\"
+  old-origin-branches = !git for-each-ref refs/remotes/origin --format='%(committerdate)  %(authorname)  %(refname)' | sort -k5nr -k2Mr -k3nr -k4nr | grep \"$(git config --get user.name)\"
+  parent = !git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'
+  pf = push --force-with-lease
+  r = restore
+  rs = restore --staged
+  s = switch
+  sc = switch --create
+  scq = !git switch --create $(git symbolic-ref --short HEAD)-qa origin/qa
+  sca = !git switch --create $(git symbolic-ref --short HEAD)-alpha origin/alpha
+  scs = !git switch --create $(git symbolic-ref --short HEAD)-stage origin/stage
+  set-upstream-to-track-origin-same-branch-name = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
+  sf = !git branch | fzf | xargs git switch
   sl = log --oneline --decorate -20
   sla = log --oneline --decorate -60
   slap = log --oneline --decorate --graph --all
-  unstage = reset HEAD
-  ap = add -p
-  dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
-  ctags = !.git/hooks/ctags
-  parent = !git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'
-  set-upstream-to-track-origin-same-branch-name = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
-  old-branches = !git for-each-ref refs/heads --format='%(committerdate)  %(authorname)  %(refname)' | sort -k5nr -k2Mr -k3nr -k4nr | grep \"$(git config --get user.name)\"
-  old-origin-branches = !git for-each-ref refs/remotes/origin --format='%(committerdate)  %(authorname)  %(refname)' | sort -k5nr -k2Mr -k3nr -k4nr | grep \"$(git config --get user.name)\"
+  st = status
   uncommit = reset HEAD^
-  ignored = !git ls-files -v | grep "^[[:lower:]]"
-  ignore = update-index --assume-unchanged
-  unignore = update-index --no-assume-unchanged
-  feature = !git s master && git fetch && git pull origin && git sc
+  unignore = update-index --no-skip-worktree
+  unstage = restore --staged
 [merge]
   tool = meld
 [diff]
@@ -75,3 +86,7 @@
   smtpserverport = 465
 [mergetool]
   keepBackup = false
+[includeIf "gitdir:~/projects/"]
+  path = ~/.gitconfig.work
+[includeIf "gitdir:~/personal-projects/"]
+  path = ~/.gitconfig.personal
