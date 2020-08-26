@@ -180,3 +180,7 @@ ensure_tmux_is_running
 if [ -r ~/.zshrc.local ]; then
   source ~/.zshrc.local
 fi
+
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
