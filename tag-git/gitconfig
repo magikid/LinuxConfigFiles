@@ -13,7 +13,7 @@
   co = checkout
   cob = switch --create
   cp = cherry-pick
-  ctags = !.git/hooks/ctags
+  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
   dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   ds = diff --staged
   feature = !git s master && git fetch && git pull origin && git sc
