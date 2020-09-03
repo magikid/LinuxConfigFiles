@@ -227,6 +227,7 @@ let g:gutentags_generate_on_write = 1
 let g:gutentags_generate_on_empty_buffer = 0
 let g:gutentags_ctags_extra_args = ["--php-kinds=cfit"]
 set tags+=./tags
+set tags+=./.git/tags
 
 " Map <Ctrl>-p to controlp
 let g:ctrlp_map = '<c-p>'
