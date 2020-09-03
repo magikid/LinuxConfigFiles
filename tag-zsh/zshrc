@@ -103,6 +103,8 @@ alias ls="ls -h"
 alias nq="nix-env -qaP"
 alias ni="nix-env -i"
 alias nl="nix-env -q"
+alias c='xclip -selection clipboard'
+alias v='xclip -o'
 
 archive-folder() {
   if [[ -z "$1" ]]; then
