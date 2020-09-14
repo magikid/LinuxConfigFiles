@@ -315,9 +315,6 @@ au Syntax * RainbowParenthesesLoadRound
 au Syntax * RainbowParenthesesLoadSquare
 au Syntax * RainbowParenthesesLoadBraces
 
-" Use brew python3 and not the system version
-let g:python3_host_prog = '/usr/local/bin/python3'
-
 " Ignore .git folder, tmp folders, any .swp files, and the node_modules folder
 set wildignore+=*/.git/*,*/tmp/*,*.swp,*/node_modules/*
 
