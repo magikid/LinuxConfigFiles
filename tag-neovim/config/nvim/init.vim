@@ -383,14 +383,18 @@ let g:python3_host_prog='/usr/bin/python3'
 """ Leader key shortcuts
 " Set <Leader> to a space
 let mapleader = " "
+" Run the whole suite with <Space>a
+nmap <silent> <leader>a :TestSuite<CR>
+" Use leader-f to toggle folding code
+nnoremap <leader>f za
+" Jump to definition
+map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
+" Open NERDTree to the current file
+nmap <leader>n :NERDTreeFind<CR>
 " Run the closest test with <Space>t
 nmap <silent> <leader>t :TestNearest<CR>
 " Run all tests in the file with <Space>T
 nmap <silent> <leader>T :TestFile<CR>
-" Run the whole suite with <Space>a
-nmap <silent> <leader>a :TestSuite<CR>
-" Open NERDTree to the current file
-nmap <leader>n :NERDTreeFind<CR>
 
 """ Function key shortcuts
 " Toggle the NerdTree pane with F1
@@ -402,7 +406,7 @@ map <F3> :tabnext<CR>
 " Close a tab with F4
 map <F4> :tabclose<CR>
 " Open the langauge client menu
-nnoremap <F5> :call LanguageClient_contextMenu()<CR>
+nnoremap <F5> <Plug>(lcn-menu)
 " Map F6 to running make
 map <F6> :make<CR>
 " Map F7 to search through tags
