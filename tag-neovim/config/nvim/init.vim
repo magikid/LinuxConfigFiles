@@ -79,8 +79,14 @@ Plug 'jiangmiao/auto-pairs'
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 " Better php autocomplete
 Plug 'shawncplus/phpcomplete.vim'
+" Better folding for python
+Plug 'tmhedberg/SimpylFold'
+" Handle continuation lines in Python right
+Plug 'vim-scripts/indentpython.vim'
 call plug#end()
 
+" Always use utf-8
+set encoding=utf-8
 " Allow backspace over autoindents, line breaks, and line starts
 set bs=indent,eol,start
 " ¯\_(ツ)_/¯ something about marks in files
@@ -184,6 +190,23 @@ augroup spellingAug
   autocmd FileType gitcommit setlocal spell
   " Spell check mercurial commits
   autocmd BufNewFile,BufRead hg-editor-*.txt setlocal spell textwidth=80
+augroup end
+
+augroup pythonStuffAug
+  " Use PEP 8 indentation for python files
+  " 4 spaces for each tab
+  " Max 79 chars per line
+  " Use spaces for tabs, not hard tabs
+  autocmd BufNewFile,BufRead *.py
+      \ set tabstop=4
+      \ set softtabstop=4
+      \ set shiftwidth=4
+      \ set textwidth=79
+      \ set expandtab
+      \ set autoindent
+      \ set fileformat=unix
+  " Highlight trailing whitespace
+  autocmd BufRead,BufNewFile *.py,*.pyw match OverLength /\s\+$/
 augroup end
 
 " Autocommand group for vim-php-namespace commands
@@ -337,7 +360,7 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['/usr/local/bin/pyls'],
+    \ 'python': ['~/.local/bin/pyls'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
 let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
@@ -351,6 +374,11 @@ set rtp+=/usr/local/opt/fzf
 
 " Set the airline statusbar theme
 let g:airline_theme="bubblegum"
+
+" Use this specific python2
+let g:python_host_prog='/usr/bin/python'
+" Use this specific python3
+let g:python3_host_prog='/usr/bin/python3'
 
 """ Leader key shortcuts
 " Set <Leader> to a space
