@@ -166,9 +166,11 @@ export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
 
 # Add this to your zshrc or bzshrc file
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
+_not_in_vscode() { [[ $TERM_PROGRAM != "vscode" ]] }
+_not_in_intellij() { [[ $TERMINAL_EMULATOR != "JetBrains-JediTerm" ]] }
 
 ensure_tmux_is_running() {
-  if _not_inside_tmux; then
+  if _not_inside_tmux && _not_in_vscode && _not_in_intellij; then
     tat
   fi
 }
