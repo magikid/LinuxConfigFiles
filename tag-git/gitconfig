@@ -14,9 +14,10 @@
   cob = switch --create
   cp = cherry-pick
   ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
+  default-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -f4 -d/"
   dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   ds = diff --staged
-  feature = !git s master && git fetch && git pull origin && git sc
+  feature = !git s $(git default-branch) && git fetch && git pull origin && git sc
   ignore = update-index --skip-worktree
   ignored = !git ls-files -v | grep "^S"
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
@@ -28,9 +29,6 @@
   rs = restore --staged
   s = switch
   sc = switch --create
-  scq = !git switch --create $(git symbolic-ref --short HEAD)-qa origin/qa
-  sca = !git switch --create $(git symbolic-ref --short HEAD)-alpha origin/alpha
-  scs = !git switch --create $(git symbolic-ref --short HEAD)-stage origin/stage
   set-upstream-to-track-origin-same-branch-name = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
   sf = !git branch | fzf | xargs git switch
   sl = log --oneline --decorate -20
@@ -74,6 +72,7 @@
 [core]
   excludesfile = /Users/cjone0102/.gitignore_global
   autocrlf = input
+  attributesfile = /home/chrisj/.gitattributes
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
