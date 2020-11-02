@@ -41,6 +41,8 @@ Plug 'tpope/vim-rails'
 Plug 'tpope/vim-endwise'
 " Wraps ruby's bundler
 Plug 'tpope/vim-bundler'
+" Better handling of git files
+Plug 'tpope/vim-git'
 " wakatime.com integration
 Plug 'wakatime/vim-wakatime'
 " Twig syntax support
