@@ -164,6 +164,13 @@ export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export QT_SELECT=5
 export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
 
+# Save lots of history
+export HISTSIZE=50000
+export SAVEHIST=50000
+export HISTFILE=$HOME/.zsh_history
+# Save every command before execution, read the hist file
+setopt sharehistory
+
 # Add this to your zshrc or bzshrc file
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
 _not_in_vscode() { [[ $TERM_PROGRAM != "vscode" ]] }
