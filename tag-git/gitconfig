@@ -38,6 +38,7 @@
   uncommit = reset HEAD^
   unignore = update-index --no-skip-worktree
   unstage = restore --staged
+  update-master = fetch -f origin master:master
 [merge]
   tool = meld
 [diff]
