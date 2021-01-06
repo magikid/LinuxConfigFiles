@@ -48,3 +48,9 @@ ZD
 refactored
 postgres
 APIs
+RabbitMQ
+Kubernetes
+citus
+ScrapedOfferProductMatchingPipeline
+ScraperRequest
+OfferScraped
