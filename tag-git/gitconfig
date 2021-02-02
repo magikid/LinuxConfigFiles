@@ -44,6 +44,7 @@
   tool = meld
 [diff]
   tool = meld
+  colorMoved = default
 [push]
   default = current
 [commit]
@@ -65,7 +66,7 @@
   templatedir = ~/.git_template
 [difftool "p4merge"]
   cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
-  path = 
+  path =
 [mergetool "p4merge"]
   cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$BASE\" \"$LOCAL\" \"$REMOTE\" \"$MERGED\"
   trustExitCode = true
