@@ -164,6 +164,7 @@ export PATH=$HOME/.asdf/installs/haskell/8.6.5/bin:$PATH
 export PATH="/usr/local/opt/mysql-client/bin:$PATH"
 export QT_SELECT=5
 export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
+export DELTA_PAGER="less --mouse --wheel-lines=3"
 
 # Save lots of history
 export HISTSIZE=50000

@@ -75,6 +75,12 @@
   excludesfile = /Users/cjone0102/.gitignore_global
   autocrlf = input
   attributesfile = /home/chrisj/.gitattributes
+  pager = delta --diff-highlight
+[delta]
+  line-numbers = true
+  syntax-theme = Monokai Extended
+[interactive]
+  diffFilter = delta --color-only
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
