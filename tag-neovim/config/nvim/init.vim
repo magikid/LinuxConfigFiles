@@ -85,6 +85,8 @@ Plug 'shawncplus/phpcomplete.vim'
 Plug 'tmhedberg/SimpylFold'
 " Handle continuation lines in Python right
 Plug 'vim-scripts/indentpython.vim'
+" Allow writing to unwritable files by piping through sudo
+Plug 'lambdalisue/suda.vim'
 call plug#end()
 
 " Always use utf-8
