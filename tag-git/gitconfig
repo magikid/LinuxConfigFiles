@@ -38,8 +38,8 @@
   uncommit = reset HEAD^
   unignore = update-index --no-skip-worktree
   unstage = restore --staged
-  update-master = fetch -f origin master:master
-	gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+  update-master = fetch --prune -f origin master:master
+  gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
 [merge]
   tool = meld
 [diff]
