@@ -76,7 +76,7 @@
   excludesfile = /Users/cjone0102/.gitignore_global
   autocrlf = input
   attributesfile = /home/chrisj/.gitattributes
-  pager = delta --diff-highlight
+  pager = delta --diff-highlight --paging always
 [delta]
   line-numbers = true
   syntax-theme = Monokai Extended
