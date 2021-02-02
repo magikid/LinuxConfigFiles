@@ -106,6 +106,7 @@ alias nl="nix-env -q"
 alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias got="git"
+alias bc="bc -l"
 
 archive-folder() {
   if [[ -z "$1" ]]; then
