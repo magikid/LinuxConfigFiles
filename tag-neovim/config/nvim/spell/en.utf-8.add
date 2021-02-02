@@ -54,3 +54,5 @@ citus
 ScrapedOfferProductMatchingPipeline
 ScraperRequest
 OfferScraped
+autocompletion
+autocomplete
