@@ -168,11 +168,17 @@ export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
 export DELTA_PAGER="less --mouse --wheel-lines=3"
 
 # Save lots of history
-export HISTSIZE=50000
-export SAVEHIST=50000
+export HISTSIZE=999999999
+export SAVEHIST=$HISTSIZE
 export HISTFILE=$HOME/.zsh_history
-# Save every command before execution, read the hist file
-setopt sharehistory
+setopt EXTENDED_HISTORY          # Write the history file in the ":start:elapsed;command" format.
+setopt INC_APPEND_HISTORY        # Write to the history file immediately, not when the shell exits.
+setopt SHARE_HISTORY             # Share history between all sessions.
+setopt HIST_IGNORE_DUPS          # Don't record an entry that was just recorded again.
+setopt HIST_IGNORE_ALL_DUPS      # Delete old recorded entry if new entry is a duplicate.
+setopt HIST_IGNORE_SPACE         # Don't record an entry starting with a space.
+setopt HIST_SAVE_NO_DUPS         # Don't write duplicate entries in the history file.
+setopt HIST_BEEP                 # Beep when accessing nonexistent history.
 
 # Add this to your zshrc or bzshrc file
 _not_inside_tmux() { [[ -z "$TMUX" ]] }
