@@ -74,7 +74,7 @@ Plug 'jiangmiao/auto-pairs'
 " Adds php language server
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 " Handle continuation lines in Python right
-Plug 'vim-scripts/indentpython.vim'
+Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 " Allow writing to unwritable files by piping through sudo
 Plug 'lambdalisue/suda.vim'
 call plug#end()
