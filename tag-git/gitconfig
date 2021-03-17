@@ -59,6 +59,7 @@
   fsckobjects = true
 [fetch]
   fsckobjects = true
+  parallel = 6
 [receive]
   fsckobjects = true
 [include]
