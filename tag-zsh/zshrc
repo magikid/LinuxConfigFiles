@@ -171,6 +171,9 @@ export DELTA_PAGER="less --mouse --wheel-lines=3"
 export COMPOSE_DOCKER_CLI_BUILD=1
 export DOCKER_CLI_EXPERIMENTAL=enabled
 
+# Get nomad working everywhere there's a vpn connection
+export NOMAD_ADDR=http://theprofessor.vpn.hilandchris.com:4646
+
 # Save lots of history
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
@@ -208,3 +211,6 @@ fi
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
         source /etc/profile.d/vte.sh
 fi
+
+autoload -U +X bashcompinit && bashcompinit
+complete -o nospace -C /home/chrisj/bin/nomad nomad
