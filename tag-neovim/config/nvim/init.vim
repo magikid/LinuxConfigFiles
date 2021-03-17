@@ -23,8 +23,6 @@ Plug 'elixir-lang/vim-elixir'
 Plug 'godlygeek/tabular'
 " Run the tests for the current file (any lang), try :TestNearest or :TestFile
 Plug 'janko-m/vim-test'
-" Adding snippets, shortcut <C-y>,
-Plug 'mattn/emmet-vim'
 " Rust language support
 Plug 'rust-lang/rust.vim'
 " Pretty file tree panel
