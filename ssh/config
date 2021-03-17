@@ -14,3 +14,7 @@ Host *
   ControlPersist yes
   ForwardAgent yes
 
+Host *.repo.borgbase.com
+  ControlMaster no
+  ControlPersist no
+  IdentityFile ~/.ssh/2021_borg_id_ed25519
