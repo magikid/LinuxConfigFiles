@@ -77,6 +77,11 @@ Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer ru
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 " Allow writing to unwritable files by piping through sudo
 Plug 'lambdalisue/suda.vim'
+" Include phpactor for better php autocompletion
+Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
+Plug 'ncm2/ncm2'
+Plug 'roxma/nvim-yarp'
+Plug 'phpactor/ncm2-phpactor'
 call plug#end()
 
 " Always use utf-8
@@ -373,6 +378,16 @@ let g:airline_theme="bubblegum"
 let g:python_host_prog='/usr/bin/python'
 " Use this specific python3
 let g:python3_host_prog='/usr/bin/python3'
+
+" enable ncm2 for all buffers
+autocmd BufEnter * call ncm2#enable_for_buffer()
+set completeopt=noinsert,menuone,noselect
+inoremap <c-c> <ESC>
+" Enter selects selected ncm2 autocomplete
+inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+" Tab/Shift-Tab go forwards/backwards in ncm2
+inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 """ Leader key shortcuts
 " Set <Leader> to a space
