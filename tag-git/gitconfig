@@ -37,8 +37,10 @@
   uncommit = reset HEAD^
   unignore = update-index --no-skip-worktree
   unstage = restore --staged
-  update-master = fetch --prune -f origin master:master
-  gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+  up = !git fetch --prune --auto-maintenance origin && git fetch -f origin "$(git default-branch):$(git default-branch)"
+  gone = !git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
+  wip = !git add . && git commit -nm "WIP"
+  rem = !git rebase $(git default-branch)
 [merge]
   tool = meld
 [diff]
@@ -48,7 +50,7 @@
   default = current
 [commit]
   template = ~/.gitmessage
-  gpgsign = false
+  gpgsign = true
 [gpg]
   program = gpg
 [rebase]
