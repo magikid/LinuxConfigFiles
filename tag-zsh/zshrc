@@ -167,6 +167,10 @@ export QT_SELECT=5
 export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
 export DELTA_PAGER="less --mouse --wheel-lines=3"
 
+# Tell docker-compose to use `docker` to build stuff
+export COMPOSE_DOCKER_CLI_BUILD=1
+export DOCKER_CLI_EXPERIMENTAL=enabled
+
 # Save lots of history
 export HISTSIZE=999999999
 export SAVEHIST=$HISTSIZE
