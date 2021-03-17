@@ -13,7 +13,6 @@
   co = checkout
   cob = switch --create
   cp = cherry-pick
-  ctags = "!sh -c '[ -f .git/hooks/ctags ] || git init; .git/hooks/ctags' git-ctags"
   default-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -f4 -d/"
   dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   ds = diff --staged
