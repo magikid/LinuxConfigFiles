@@ -217,7 +217,6 @@ augroup phpNameSpaceAug
   autocmd FileType php noremap <leader>u :call PhpInsertUse()<CR>
   " Sort php use statements with <leader>-s in normal mode
   autocmd FileType php noremap <leader>s :call PhpSortUse()<CR>
-  autocmd BufWritePre *.php call PhpSortUse()
 augroup end
 " Sort php use statements alphabetically after insert
 let g:php_namespace_sort_after_insert = 1
