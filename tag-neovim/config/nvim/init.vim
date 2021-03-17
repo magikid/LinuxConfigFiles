@@ -19,8 +19,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 " Elixir integration
 Plug 'elixir-lang/vim-elixir'
-" A different tab completion library?
-Plug 'ajh17/VimCompletesMe'
 " Align text based on character e.g. :Tab /, will align rows at comma
 Plug 'godlygeek/tabular'
 " Run the tests for the current file (any lang), try :TestNearest or :TestFile
