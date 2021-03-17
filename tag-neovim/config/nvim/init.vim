@@ -237,7 +237,7 @@ augroup end
 
 " Only generate tags for files that rg knows about so it'll exclude .gitignore
 " folders
-let g:gutentags_file_list_command = 'rg --files'
+let g:gutentags_file_list_command = 'rg --files --color=never'
 " Store all of our tag files in a central location instead of scattered around
 let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
 " Generate tags all the time
