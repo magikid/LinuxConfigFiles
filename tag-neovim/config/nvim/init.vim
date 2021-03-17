@@ -73,8 +73,6 @@ Plug 'vim-airline/vim-airline-themes'
 Plug 'jiangmiao/auto-pairs'
 " Adds php language server
 Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
-" Better folding for python
-Plug 'tmhedberg/SimpylFold'
 " Handle continuation lines in Python right
 Plug 'vim-scripts/indentpython.vim'
 " Allow writing to unwritable files by piping through sudo
