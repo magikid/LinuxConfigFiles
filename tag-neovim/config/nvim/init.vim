@@ -19,8 +19,6 @@ Plug 'christoomey/vim-tmux-navigator'
 Plug 'ctrlpvim/ctrlp.vim'
 " Elixir integration
 Plug 'elixir-lang/vim-elixir'
-" Allows you to use <Tab> for all your insert completion needs
-Plug 'ervandew/supertab'
 " A different tab completion library?
 Plug 'ajh17/VimCompletesMe'
 " Align text based on character e.g. :Tab /, will align rows at comma
