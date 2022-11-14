@@ -18,3 +18,10 @@ Host *.repo.borgbase.com
   ControlMaster no
   ControlPersist no
   IdentityFile ~/.ssh/2021_borg_id_ed25519
+
+Host git.hilandchris.com
+  Port 2222
+  IdentityFile ~/.ssh/gogs
+
+Host zoidberg.vpn.hilandchris.com
+  Port 1102
