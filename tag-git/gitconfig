@@ -6,41 +6,39 @@
   ap = add -p
   b = branch
   bd = branch -d
-  ci = commit -v
   cia = commit --amend
   cian = commit --amend --no-edit
+  ci = commit -v
   cif = commit -v --fixup
-  co = checkout
   cob = switch --create
+  co = checkout
   cp = cherry-pick
   default-branch = "!git symbolic-ref refs/remotes/origin/HEAD | cut -f4 -d/"
-  dm = log --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr)%Creset' --abbrev-commit --date=relative
   ds = diff --staged
-  feature = !git s $(git default-branch) && git fetch && git pull origin && git sc
-  ignore = update-index --skip-worktree
   ignored = !git ls-files -v | grep "^S"
+  ignore = update-index --skip-worktree
   ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
-  old-branches = !git for-each-ref refs/heads --format='%(committerdate)  %(authorname)  %(refname)' | sort -k5nr -k2Mr -k3nr -k4nr | grep \"$(git config --get user.name)\"
-  old-origin-branches = !git for-each-ref refs/remotes/origin --format='%(committerdate)  %(authorname)  %(refname)' | sort -k5nr -k2Mr -k3nr -k4nr | grep \"$(git config --get user.name)\"
-  parent = !git show-branch | grep '*' | grep -v "$(git rev-parse --abbrev-ref HEAD)" | head -n1 | sed 's/.*\\[\\(.*\\)\\].*/\\1/' | sed 's/[\\^~].*//'
   pf = push --force-with-lease
+  rem = !git rebase $(git default-branch)
+  remi = !git rebase -i $(git default-branch)
   r = restore
+  rec = rebase --continue
+  rea = rebase --abort
   rs = restore --staged
-  s = switch
   sc = switch --create
   set-upstream-to-track-origin-same-branch-name = !git branch --set-upstream-to=origin/`git symbolic-ref --short HEAD`
   sf = !git branch | fzf | xargs git switch
-  sl = log --oneline --decorate -20
   sla = log --oneline --decorate -60
   slap = log --oneline --decorate --graph --all
+  sl = log --oneline --decorate -20
+  s = switch
   st = status
   uncommit = reset HEAD^
   unignore = update-index --no-skip-worktree
   unstage = restore --staged
   up = !git fetch --prune --auto-maintenance origin && git fetch -f origin "$(git default-branch):$(git default-branch)"
-  gone = !git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
   wip = !git add . && git commit -nm "WIP"
-  rem = !git rebase $(git default-branch)
+  gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
 [merge]
   tool = meld
 [diff]
