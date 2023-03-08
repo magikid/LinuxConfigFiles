@@ -13,6 +13,7 @@ Host *
   ControlPath /tmp/ssh-%h-%p-%r
   ControlPersist yes
   ForwardAgent yes
+  VisualHostKey yes
 
 Host *.repo.borgbase.com
   ControlMaster no
