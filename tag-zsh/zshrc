@@ -215,7 +215,23 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 autoload -U +X bashcompinit && bashcompinit
+eval "$(zoxide init zsh)"
+
+complete -o nospace -C /usr/bin/nomad nomad
+
+add_old_gpg_key() {
+  curl $1 | gpg --dearmor | sudo tee /usr/share/keyrings/$2.gpg > /dev/null
+}
+
+g() {
+  if [[ $# > 0 ]]; then
+    git $@
+  else
+    git status
+  fi
+}
+
+compdef g=git
 
 if [ -e /home/chrisj/.nix-profile/etc/profile.d/nix.sh ]; then . /home/chrisj/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
 export PATH=$HOME/.bin:$HOME/bin:$PATH
-eval "$(zoxide init zsh)"
