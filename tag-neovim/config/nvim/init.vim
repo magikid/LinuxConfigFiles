@@ -7,63 +7,34 @@ endif
 " List plugins to install
 " Specify a directory for plugins (for Neovim: ~/.local/share/nvim/plugged)
 call plug#begin('~/.config/nvim/plugged')
-" Asynchronous linting and make framework
-Plug 'neomake/neomake'
-" solarized theme
-Plug 'altercation/vim-colors-solarized'
 " monokai theme
 Plug 'crusoexia/vim-monokai'
 " Make tmux and vim play nicely between panes
 Plug 'christoomey/vim-tmux-navigator'
 " Quick navigation using Ctrl-P
 Plug 'ctrlpvim/ctrlp.vim'
-" Elixir integration
-Plug 'elixir-lang/vim-elixir'
 " Align text based on character e.g. :Tab /, will align rows at comma
 Plug 'godlygeek/tabular'
-" Run the tests for the current file (any lang), try :TestNearest or :TestFile
-Plug 'janko-m/vim-test'
-" Rust language support
-Plug 'rust-lang/rust.vim'
 " Pretty file tree panel
 Plug 'scrooloose/nerdtree'
 " Add git status to nerdtree
 Plug 'Xuyuanp/nerdtree-git-plugin'
-" Lots of rails integration, https://github.com/tpope/vim-rails
-Plug 'tpope/vim-rails'
 " Automatically adds end statements in Ruby, ZSH, Elixir, maybe twig?
 Plug 'tpope/vim-endwise'
-" Wraps ruby's bundler
-Plug 'tpope/vim-bundler'
 " Better handling of git files
 Plug 'tpope/vim-git'
 " wakatime.com integration
 Plug 'wakatime/vim-wakatime'
-" Twig syntax support
-Plug 'lumiliet/vim-twig'
 " Git integration
 Plug 'tpope/vim-fugitive'
 " Shows git status (add, remove, change) in gutter
 Plug 'airblade/vim-gitgutter'
 " Color parens different colors per level
 Plug 'kien/rainbow_parentheses.vim'
-" Go language support
-Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
-" Adds language server support to nvim
-Plug 'autozimu/LanguageClient-neovim', {
-    \ 'branch': 'next',
-    \ 'do': 'bash install.sh',
-    \ }
 " fuzzy finder support for nvim
 Plug 'junegunn/fzf'
 " Comment stuff out more easily, try gcc
 Plug 'tpope/vim-commentary'
-" Add use statements to PHP with <Leader>-u
-Plug 'arnaud-lb/vim-php-namespace'
-" Handle tags generation automatically
-Plug 'ludovicchabant/vim-gutentags'
-" PHP Syntax highlighting
-Plug 'StanAngeloff/php.vim'
 " Automatically set tabs based on current file tabs
 Plug 'tpope/vim-sleuth'
 " Fancy statusline
@@ -71,17 +42,10 @@ Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 " Add matching braces and quotes automagically
 Plug 'jiangmiao/auto-pairs'
-" Adds php language server
-Plug 'roxma/LanguageServer-php-neovim',  {'do': 'composer install && composer run-script parse-stubs'}
 " Handle continuation lines in Python right
 Plug 'vim-scripts/indentpython.vim', {'for': 'python'}
 " Allow writing to unwritable files by piping through sudo
 Plug 'lambdalisue/suda.vim'
-" Include phpactor for better php autocompletion
-Plug 'phpactor/phpactor' ,  {'do': 'composer install', 'for': 'php'}
-Plug 'ncm2/ncm2'
-Plug 'roxma/nvim-yarp'
-Plug 'phpactor/ncm2-phpactor'
 call plug#end()
 
 " Always use utf-8
@@ -151,13 +115,6 @@ nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
 nnoremap <C-l> <C-w>l
 
-" Originally, these were to force me to use hjkl to navigate instead of
-" arrows.  Now the up/down will scrolls through the neomake error list.
-noremap <Up> :lprev<CR>
-noremap <Left> <nop>
-noremap <Right> <nop>
-noremap <Down> :lnext<CR>
-
 " Use jj to escape insert mode and return to normal mode
 imap jj <Esc>
 
@@ -209,48 +166,6 @@ augroup pythonStuffAug
   autocmd BufRead,BufNewFile *.py,*.pyw match OverLength /\s\+$/
 augroup end
 
-" Autocommand group for vim-php-namespace commands
-augroup phpNameSpaceAug
-  " Clear out this autocommand group on load
-  autocmd!
-
-  " Setup <Leader>-u to add use statement for object under cursor in normal mode
-  autocmd FileType php noremap <leader>u :call PhpInsertUse()<CR>
-  " Sort php use statements with <leader>-s in normal mode
-  autocmd FileType php noremap <leader>s :call PhpSortUse()<CR>
-augroup end
-" Sort php use statements alphabetically after insert
-let g:php_namespace_sort_after_insert = 1
-
-" Autocmds related to tags generation and quickfix window
-augroup tagAug
-  autocmd!
-  " Generate a tags file on save
-  autocmd WinEnter * if winnr('$') == 1 && &buftype == "quickfix"|q|endif
-augroup end
-
-" Add autogroup for tag generation
-augroup tagAug
-  autocmd!
-  " If we're working in a git commit (or similar), disable tag file generation
-  autocmd FileType git,gitcommit,gitrebase,gitsendemail :let g:gutentags_enabled=0
-augroup end
-
-" Only generate tags for files that rg knows about so it'll exclude .gitignore
-" folders
-let g:gutentags_file_list_command = 'rg --files --color=never'
-" Store all of our tag files in a central location instead of scattered around
-let g:gutentags_cache_dir = expand('~/.cache/vim/ctags/')
-" Generate tags all the time
-let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_new = 1
-let g:gutentags_generate_on_missing = 1
-let g:gutentags_generate_on_write = 1
-let g:gutentags_generate_on_empty_buffer = 0
-let g:gutentags_ctags_extra_args = ["--php-kinds=cfit"]
-set tags^=tags
-set tags^=.git/tags
-
 " Map <Ctrl>-p to controlp
 let g:ctrlp_map = '<c-p>'
 let g:ctrlp_cmd = 'CtrlP'
@@ -287,34 +202,11 @@ function! MyOnBattery()
   return 0
 endfunction
 
-" If we're running vim on batter, only run neomake on write, otherwise run it
-" when writing, reading, inserting after 500ms
-if MyOnBattery()
-  call neomake#configure#automake('w')
-else
-  call neomake#configure#automake('nrwi', 500)
-endif
-let g:neomake_open_list = 2
-
-" Use this to run phpcs
-let g:neomake_php_phpcs_exe = '/Users/cjone0102/.composer/vendor/bin/phpcs'
-" Use the Symfony2 standard with phpcs
-let g:neomake_php_phpcs_args_standard = "Symfony2"
-" When editing php, only enable phpcs and phpstan
-let g:neomake_php_enabled_makers = ['phpcs', 'phpstan']
-" Sepcify the autoload file for phpstan, it was having trouble finding it
-let g:neomake_php_phpstan_args = "--autoload-file=app/autoload.php"
-" Defaults to tidy and htmlhint but tidy throws a bunch of false positives
-" when editing twigs so disable it for twigs
-let g:neomake_html_twig_enabled_makers = ["htmlhint"]
-
 " Set tab and trailing space characters
 set list listchars=tab:»·,trail:·
 
 " Also use <Space> to toggle search highlighting
 nmap <Space> :set hlsearch!<CR>
-" Use dockertools for phpunit tests
-let test#php#phpunit#executable = "./bin/dockertools phpunit"
 
 " Use the * clipboard
 set clipboard=unnamed
@@ -354,19 +246,6 @@ nnoremap <silent> <C-\> :TmuxNavigatePrevious<cr>
 " The length of time (in ms) vim waits before triggering some plugins like git gutter
 set updatetime=300
 
-" LanguageClient config
-let g:LanguageClient_serverCommands = {
-    \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
-    \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
-    \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
-    \ }
-let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
-let g:LanguageClient_loadSettings = 1
-
-" Run cargo fmt on save
-let g:rustfmt_autosave = 1
-
 " Use fzf for vim
 set rtp+=/usr/local/opt/fzf
 
@@ -378,31 +257,18 @@ let g:python_host_prog='/usr/bin/python'
 " Use this specific python3
 let g:python3_host_prog='/usr/bin/python3'
 
-" enable ncm2 for all buffers
-"autocmd BufEnter * call ncm2#enable_for_buffer()
-"set completeopt=noinsert,menuone,noselect
+" set completeopt=noinsert,menuone,noselect
 inoremap <c-c> <ESC>
-" Enter selects selected ncm2 autocomplete
-"inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
-" Tab/Shift-Tab go forwards/backwards in ncm2
-"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 """ Leader key shortcuts
 " Set <Leader> to a space
 let mapleader = " "
-" Run the whole suite with <Space>a
-nmap <silent> <leader>a :TestSuite<CR>
 " Use leader-f to toggle folding code
 nnoremap <leader>f za
-" Jump to definition
-map <leader>g :YcmCompleter GoToDefinitionElseDeclaration<CR>
 " Open NERDTree to the current file
 nmap <leader>n :NERDTreeFind<CR>
-" Run the closest test with <Space>t
-nmap <silent> <leader>t :TestNearest<CR>
-" Run all tests in the file with <Space>T
-nmap <silent> <leader>T :TestFile<CR>
+" Close NERDTree
+nmap <leader>m :NERTreeClose<CR>
 
 """ Function key shortcuts
 " Toggle the NerdTree pane with F1
@@ -413,10 +279,6 @@ map <F2> :tabprevious<CR>
 map <F3> :tabnext<CR>
 " Close a tab with F4
 map <F4> :tabclose<CR>
-" Open the langauge client menu
-nnoremap <F5> <Plug>(lcn-menu)
-" Map F6 to running make
-map <F6> :make<CR>
 " Map F7 to search through tags
 map <F7> :CtrlPTag<CR>
 " Remove all trailing whitespace by pressing F8
