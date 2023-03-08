@@ -57,7 +57,7 @@ plugins=(fzf-tab emoji gitfast vim-interaction virtualenv mercurial docker-compo
 # User configuration
 
 # export MANPATH="/usr/local/man:$MANPATH"
-export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin
+#export PATH=/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:$PATH
 
 # Include environment specific config if file is readable
 if [ -r ~/.zshrc.local-theme ]; then
@@ -67,7 +67,9 @@ fi
 source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
+export LC_ALL=en_US.UTF-8
 export LANG=en_US.UTF-8
+export LANGUAGE=en_US.UTF-8
 
 # Preferred editor for local and remote sessions
 # if [[ -n $SSH_CONNECTION ]]; then
@@ -147,22 +149,25 @@ export PYENV_ROOT="$HOME/.pyenv"
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --color=never --glob="!**/.git/"'
 export PATH=/usr/local/go/bin:$PATH
-export PATH=$HOME/go/bin:$PATH
-export PATH=$HOME/.cargo/bin:$PATH
-export PATH=$HOME/.linuxbrew/bin:$PATH
-export PATH=$HOME/.config/composer/vendor/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/lib64/qt-3.3/bin:$PATH
 export PATH=/usr/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 export PATH=/usr/local/sbin:$PATH
 export PATH=/usr/sbin:$PATH
+export PATH=/usr/local/opt/mysql-client/bin:$PATH
+export PATH=$HOME/.local/bin:$PATH
+export PATH=$HOME/.asdf/shims:$HOME/.asdf/bin:$PATH
+export PATH=$HOME/go/bin:$PATH
+export PATH=$HOME/.cargo/bin:$PATH
+export PATH=$HOME/.linuxbrew/bin:$PATH
+export PATH=$HOME/.config/composer/vendor/bin:$PATH
 export PATH=$HOME/.npm/bin:$PATH
 export PATH=$HOME/.npm-packages/bin:$PATH
-export PATH=$HOME/.bin:$HOME/bin:$PATH
-export PATH=$HOME/.local/bin:$PATH
 export PATH=$HOME/.asdf/installs/haskell/8.6.5/bin:$PATH
-export PATH="/usr/local/opt/mysql-client/bin:$PATH"
+export PATH=$HOME/.asdf/installs/golang/1.18.1/packages/bin:$PATH
+export PATH=$PATH:/snap/bin
+export PATH=$PATH:/usr/games
 export QT_SELECT=5
 export PROMPT="%(?:$emoji[smiling_face_with_sunglasses]:$emoji[fire])  $PROMPT"
 export DELTA_PAGER="less --mouse --wheel-lines=3"
@@ -213,4 +218,7 @@ if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
 fi
 
 autoload -U +X bashcompinit && bashcompinit
-complete -o nospace -C /home/chrisj/bin/nomad nomad
+
+if [ -e /home/chrisj/.nix-profile/etc/profile.d/nix.sh ]; then . /home/chrisj/.nix-profile/etc/profile.d/nix.sh; fi # added by Nix installer
+export PATH=$HOME/.bin:$HOME/bin:$PATH
+eval "$(zoxide init zsh)"
