@@ -41,6 +41,8 @@
   gone = ! git fetch -p && git for-each-ref --format '%(refname:short) %(upstream:track)' | awk '$2 == \"[gone]\" {print $1}' | xargs -r git branch -D
 [merge]
   tool = meld
+  conflictStyle = zdiff3
+  ff = only
 [diff]
   tool = meld
   colorMoved = default
@@ -57,13 +59,15 @@
   fsckobjects = true
 [fetch]
   fsckobjects = true
-  parallel = 6
+  parallel = 0
+  prune = true
 [receive]
   fsckobjects = true
 [include]
   path = .gitconfig.local
 [init]
-  templatedir = ~/.git_template
+  templatedir = /home/chrisj/.git-templates
+  defaultBranch = main
 [difftool "p4merge"]
   cmd = /Applications/p4merge.app/Contents/MacOS/p4merge \"$LOCAL\" \"$REMOTE\"
   path =
@@ -76,12 +80,13 @@
   excludesfile = /Users/cjone0102/.gitignore_global
   autocrlf = input
   attributesfile = /home/chrisj/.gitattributes
-  pager = delta --diff-highlight --paging always
+  pager = delta --relative-paths --diff-highlight --paging always --max-line-length 0
 [delta]
+  features = decorations
   line-numbers = true
   syntax-theme = Monokai Extended
 [interactive]
-  diffFilter = delta --color-only
+  diffFilter = delta --color-only --features=interactive
 [filter "lfs"]
   clean = git-lfs clean -- %f
   smudge = git-lfs smudge -- %f
@@ -98,5 +103,25 @@
   path = ~/.gitconfig.work
 [includeIf "gitdir:~/personal-projects/"]
   path = ~/.gitconfig.personal
+[includeIf "gitdir:~/go/"]
+  path = ~/.gitconfig.personal
 [pull]
-	rebase = true
+  ff = only
+  rebase = true
+[credential]
+  helper = cache
+[help]
+  autocorrect = prompt
+[color]
+  ui = auto
+[features]
+  manyFiles = true
+[maintenance]
+  repo = /home/chrisj/projects/scraper
+  repo = /home/chrisj/projects/catalog
+[stgit "alias"]
+  st = !stg status
+  se = series
+  up = !git up
+  pf = !git pf
+  rem = rebase master
