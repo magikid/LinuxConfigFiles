@@ -145,8 +145,7 @@ call filter(s:undos, 'getftime(v:val) < localtime() - (60 * 60 * 24 * 90)')
 " Same for this one, no idea what it does
 call map(s:undos, 'delete(v:val)')
 
-" Make it easier to jump between split panes with Ctrl-h etc instead of
-" Ctrl-w,h
+" Make it easier to jump between split panes with Ctrl-h etc instead of Ctrl-w,h
 nnoremap <C-h> <C-w>h
 nnoremap <C-j> <C-w>j
 nnoremap <C-k> <C-w>k
@@ -189,6 +188,8 @@ augroup spellingAug
   autocmd FileType gitcommit setlocal spell
   " Spell check mercurial commits
   autocmd BufNewFile,BufRead hg-editor-*.txt setlocal spell textwidth=80
+  " Spell check for jrnl entries
+  autocmd BufRead,BufNewFile *.jrnl setlocal spell textwidth=80
 augroup end
 
 augroup pythonStuffAug
@@ -358,7 +359,6 @@ let g:LanguageClient_serverCommands = {
     \ 'rust': ['~/.cargo/bin/rustup', 'run', 'stable', 'rls'],
     \ 'javascript': ['/usr/local/bin/javascript-typescript-stdio'],
     \ 'javascript.jsx': ['tcp://127.0.0.1:2089'],
-    \ 'python': ['~/.local/bin/pyls'],
     \ 'ruby': ['~/.rbenv/shims/solargraph', 'stdio'],
     \ }
 let g:LanguageClient_settingsPath = expand('~/.config/nvim/settings.json')
@@ -379,14 +379,14 @@ let g:python_host_prog='/usr/bin/python'
 let g:python3_host_prog='/usr/bin/python3'
 
 " enable ncm2 for all buffers
-autocmd BufEnter * call ncm2#enable_for_buffer()
-set completeopt=noinsert,menuone,noselect
+"autocmd BufEnter * call ncm2#enable_for_buffer()
+"set completeopt=noinsert,menuone,noselect
 inoremap <c-c> <ESC>
 " Enter selects selected ncm2 autocomplete
-inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
+"inoremap <expr> <CR> (pumvisible() ? "\<c-y>\<cr>" : "\<CR>")
 " Tab/Shift-Tab go forwards/backwards in ncm2
-inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
-inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
+"inoremap <expr> <Tab> pumvisible() ? "\<C-n>" : "\<Tab>"
+"inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
 """ Leader key shortcuts
 " Set <Leader> to a space
