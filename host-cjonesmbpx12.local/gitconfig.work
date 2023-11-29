@@ -1,8 +1,0 @@
-[user]
-  email = chris.jones@cbsinteractive.com
-  name = cjone0102
-  signingkey = 9647A2F6E5511103
-[commit]
-  gpgsign = false
-[core]
-  hooksPath = ~/projects/.git-hooks
