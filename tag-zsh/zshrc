@@ -109,6 +109,12 @@ alias c='xclip -selection clipboard'
 alias v='xclip -o'
 alias got="git"
 alias bc="bc -l"
+alias j="just --working-directory . --justfile ~/Justfile"
+alias df="df -hl"
+
+nix-install() {
+  nix-env -iA "nixpkgs.${1}"
+}
 
 archive-folder() {
   if [[ -z "$1" ]]; then
@@ -148,6 +154,7 @@ export INFOPATH="$HOME/.linuxbrew/share/info:$INFOPATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export RIPGREP_CONFIG_PATH="$HOME/.rgrc"
 export FZF_DEFAULT_COMMAND='rg --files --hidden --follow --color=never --glob="!**/.git/"'
+
 export PATH=/usr/local/go/bin:$PATH
 export PATH=/usr/local/heroku/bin:$PATH
 export PATH=/usr/lib64/qt-3.3/bin:$PATH
