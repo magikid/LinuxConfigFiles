@@ -120,8 +120,10 @@
   repo = /home/chrisj/projects/scraper
   repo = /home/chrisj/projects/catalog
 [stgit "alias"]
-  st = !stg status
-  se = series
-  up = !git up
+  bc = branch --create
+  fp = !git pf
   pf = !git pf
-  rem = rebase master
+  rem = rebase --merged master
+  se = series
+  st = !stg status
+  up = !git up
