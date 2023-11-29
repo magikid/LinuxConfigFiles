@@ -7,6 +7,9 @@ ServerAliveCountMax 2
 # Use my normal ssh keys
 AddKeysToAgent yes
 
+TCPKeepAlive yes
+ServerAliveInterval 5
+
 Host *
   # Multiplex connections
   ControlMaster auto
@@ -26,3 +29,7 @@ Host git.hilandchris.com
 
 Host zoidberg.vpn.hilandchris.com
   Port 1102
+
+Host truenas.hilandchris.com
+  PubkeyAuthentication no
+  PreferredAuthentications password
